@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wjk2288.liangbin.activity.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/main_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ed0d0b0b"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_mian_shop"
+            style="@style/rb_style"
+            android:drawableTop="@drawable/rb_main_shop_select"
+            android:text="商店" />
+
+        <RadioButton
+            android:id="@+id/rb_mian_mgz"
+            style="@style/rb_style"
+            android:drawableTop="@drawable/rb_main_mgz_select"
+            android:text="杂志" />
+
+        <RadioButton
+            android:id="@+id/rb_mian_daren"
+            style="@style/rb_style"
+            android:drawableTop="@drawable/rb_main_daren_select"
+            android:text="达人" />
+
+        <RadioButton
+            android:id="@+id/rb_mian_shared"
+            style="@style/rb_style"
+            android:drawableTop="@drawable/rb_main_shared_select"
+            android:text="分享" />
+
+        <RadioButton
+            android:id="@+id/rb_mian_self"
+            style="@style/rb_style"
+            android:drawableTop="@drawable/rb_main_self_select"
+            android:text="个人" />
+
+
+    </RadioGroup>
+</LinearLayout>
