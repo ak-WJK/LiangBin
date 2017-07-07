@@ -92,7 +92,6 @@ public class BrandPager extends BasePager {
     }
 
 
-
     class BrandAdapter extends BaseAdapter {
 
 

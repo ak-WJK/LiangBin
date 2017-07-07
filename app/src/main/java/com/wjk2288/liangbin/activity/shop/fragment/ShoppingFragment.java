@@ -46,8 +46,8 @@ public class ShoppingFragment extends BaseFragment {
     @Override
     public View initView() {
         View view = View.inflate(context, R.layout.fragment_shopping, null);
-        ButterKnife.bind(this, view);
 
+        ButterKnife.bind(this, view);
 
         return view;
     }
@@ -60,6 +60,9 @@ public class ShoppingFragment extends BaseFragment {
         viewpager.setAdapter(new MyPagerAdapter());
         //将tabLayout与viewPager建立联系
         tab.setupWithViewPager(viewpager);
+
+        //设置默认选中的Tab
+        tab.getTabAt(2).select();
 
     }
 
@@ -109,6 +112,7 @@ public class ShoppingFragment extends BaseFragment {
         @Override
         public CharSequence getPageTitle(int position) {
 //            return super.getPageTitle(position);
+
             return titles[position];
         }
     }

@@ -29,4 +29,10 @@ public class NetUtils {
 
     public static final String GIFT_URL = "http://mobile.iliangcang.com/goods/goodsList?app_key=Android&count=10&list_id=7&page=1&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0";
 
+    //首页页面
+    public static final String HOME_BASE_URL = "http://mobile.iliangcang.com/goods/";
+
+    public static final String HOME_URL = "newShopHome?app_key=Android&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0";
+
+
 }

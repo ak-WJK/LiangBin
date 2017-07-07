@@ -95,7 +95,6 @@ public class TypePager extends BasePager {
 
     }
 
-
     class TypeAdapter extends RecyclerView.Adapter<TypeViewHodler> {
         @Override
         public TypeViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
