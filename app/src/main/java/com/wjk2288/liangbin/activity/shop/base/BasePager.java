@@ -3,8 +3,6 @@ package com.wjk2288.liangbin.activity.shop.base;
 import android.content.Context;
 import android.view.View;
 
-import butterknife.ButterKnife;
-
 /**
  * Created by Administrator on 2017/7/6.
  */
@@ -16,7 +14,6 @@ public abstract class BasePager {
     public BasePager(Context context) {
         this.context = context;
         rootView = initView();
-        ButterKnife.bind(this, rootView);
     }
 
     public abstract View initView();

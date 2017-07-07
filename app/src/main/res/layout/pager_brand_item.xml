@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_brand_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_margin="7dp"
         android:background="@drawable/brand_logo_empty" />
 
@@ -19,7 +19,7 @@
         android:layout_toRightOf="@+id/iv_brand_icon"
         android:text="品牌名称"
         android:textColor="#fff"
-        android:textSize="16sp" />
+        android:textSize="13sp" />
 
     <ImageButton
         android:id="@+id/ib_brand_getinto"
@@ -28,14 +28,14 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
-        android:background="@drawable/country_right_arrow" />
+        android:background="@drawable/arrow_right_brand" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/iv_brand_icon"
         android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:background="#8df2f2f2" />
+        android:layout_marginRight="1dp"
+        android:background="#5c9e9c9c" />
 
 </RelativeLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_gift_jingxuan"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/ic_present_7"
+        android:clickable="true" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_gift_jieri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_1"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/iv_gift_aiqing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_2"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/iv_gift_shengri"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_3"
+            android:clickable="true" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_gift_pengyou"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_4"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/iv_gift_haizi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_5"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/iv_gift_fumu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ic_present_6"
+            android:clickable="true" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gift_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ea358991"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:drawableLeft="@drawable/ic_gift_unselected"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="设置送礼物提醒   >"
+            android:textColor="#fff" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

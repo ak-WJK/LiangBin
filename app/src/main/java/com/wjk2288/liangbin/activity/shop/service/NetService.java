@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
 import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
+import com.wjk2288.liangbin.activity.shop.bean.GiftBean;
 import com.wjk2288.liangbin.activity.shop.bean.SpecialBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 
@@ -27,8 +28,18 @@ public interface NetService {
                                        @Query("page") int page,
                                        @Query("sig") String sig,
                                        @Query("uid") String uid,
-                                       @Query("user_token") String usertoken,
+                                       @Query("user_token") String userToken,
                                        @Query("v") String v
+    );
+
+
+    @GET("goodsList")
+    Observable<GiftBean> getGift(@Query("app_key") String appkey,
+                                 @Query("count") int count,
+                                 @Query("list_id") int listId,
+                                 @Query("page") int pager,
+                                 @Query("sig") String sig,
+                                 @Query("v") String v
     );
 
 

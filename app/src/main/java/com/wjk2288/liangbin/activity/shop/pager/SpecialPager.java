@@ -52,6 +52,7 @@ public class SpecialPager extends BasePager {
     @Override
     public void initData() {
 
+
         Observer<SpecialBean> observer = new Observer<SpecialBean>() {
             @Override
             public void onCompleted() {
