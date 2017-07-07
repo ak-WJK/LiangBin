@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f33b3939">
+
+    <ImageView
+        android:id="@+id/iv_brand_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="7dp"
+        android:background="@drawable/brand_logo_empty" />
+
+    <TextView
+        android:id="@+id/tv_brand_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_brand_icon"
+        android:text="品牌名称"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <ImageButton
+        android:id="@+id/ib_brand_getinto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/country_right_arrow" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/iv_brand_icon"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="#8df2f2f2" />
+
+</RelativeLayout>
