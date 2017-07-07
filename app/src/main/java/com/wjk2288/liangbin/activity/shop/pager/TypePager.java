@@ -59,7 +59,7 @@ public class TypePager extends BasePager {
     @Override
     public void initData() {
 
-        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.BASE_URL).create(NetService.class);
+        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.TYPE_BASE_URL).create(NetService.class);
         Observer<TypeBean> observer = new Observer<TypeBean>() {
             @Override
             public void onCompleted() {

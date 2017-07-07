@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
 import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
+import com.wjk2288.liangbin.activity.shop.bean.SpecialBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 
 import retrofit2.http.GET;
@@ -18,6 +19,17 @@ public interface NetService {
 
     @GET("brandList")
     Observable<BrandBean> getBrand(@Query("app_key") String appkey, @Query("count") int count, @Query("page") int page, @Query("sig") String sig, @Query("v") String v);
+
+
+    @GET("shopSpecial")
+    Observable<SpecialBean> getSpecial(@Query("app_key") String appkey,
+                                       @Query("count") int count,
+                                       @Query("page") int page,
+                                       @Query("sig") String sig,
+                                       @Query("uid") String uid,
+                                       @Query("user_token") String usertoken,
+                                       @Query("v") String v
+    );
 
 
 }

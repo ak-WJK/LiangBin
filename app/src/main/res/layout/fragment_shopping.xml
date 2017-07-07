@@ -29,7 +29,7 @@
                 android:layout_centerInParent="true"
                 android:text="商 店"
                 android:textColor="#fff"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <ImageButton
                 android:id="@+id/ib_shop_cart"
@@ -46,13 +46,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabBackground="@android:color/black"
-            app:tabGravity="fill"
+
             app:tabIndicatorColor="#ffffff"
-            app:tabIndicatorHeight="3dp"
+            app:tabIndicatorHeight="1dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="#ffffff"
             app:tabTextAppearance="@style/TabLayoutTextStyle"
-            app:tabTextColor="#cecece">
+            app:tabTextColor="#a6a5a5">
 
         </android.support.design.widget.TabLayout>
 

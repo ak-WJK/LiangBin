@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/iv_brand_icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_margin="7dp"
         android:background="@drawable/brand_logo_empty" />
 
