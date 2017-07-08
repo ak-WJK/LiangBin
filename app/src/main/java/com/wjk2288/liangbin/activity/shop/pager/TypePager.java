@@ -5,11 +5,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.adapter.TypeAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
@@ -18,9 +18,6 @@ import com.wjk2288.liangbin.activity.shop.service.NetService;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -38,7 +35,10 @@ public class TypePager extends BasePager {
 
     private RecyclerView recyclerView;
 
+    private MaterialRefreshLayout materialRefreshLayout;
+
     private static List<TypeBean.DataBean.ItemsBean> beanList;
+    private TypeAdapter adapter;
 
 
     public TypePager(Context context) {
@@ -52,23 +52,67 @@ public class TypePager extends BasePager {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_type, null);
 
         recyclerView = (RecyclerView) view.findViewById(recyclerview);
+        materialRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
+
+
+        adapter = new TypeAdapter();
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
+
+
+
+        materialRefreshLayout.setWaveColor(R.color.bla);
+        materialRefreshLayout.setIsOverLay(true);
+        materialRefreshLayout.setWaveShow(true);
+//        materialRefreshLayout.setLoadMore(true);
 
         return view;
     }
 
     @Override
     public void initData() {
+
+        RequestDatas();
+
+        refreshListener();
+
+
+    }
+
+    private void refreshListener() {
+        materialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
+
+                RequestDatas();
+
+                materialRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        materialRefreshLayout.finishRefresh();
+
+                    }
+                }, 3000);
+
+
+            }
+        });
+    }
+
+    private void RequestDatas() {
         onUnsubscribe();
         NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.TYPE_BASE_URL).create(NetService.class);
         Observer<TypeBean> observer = new Observer<TypeBean>() {
             @Override
             public void onCompleted() {
-
+                materialRefreshLayout.finishRefresh();
             }
 
             @Override
             public void onError(Throwable e) {
-
+                materialRefreshLayout.finishRefresh();
             }
 
             @Override
@@ -76,76 +120,17 @@ public class TypePager extends BasePager {
 
                 beanList = typeBean.getData().getItems();
 
-                TypeAdapter adapter = new TypeAdapter();
-
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-
+                adapter.refreshData(beanList);
 
             }
         };
 
 
         subscription = service
-                .getType("Android", "http://mobile.iliangcang.com/goods/goodsCategory?app_key=Android&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
+                .getType("Android", "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
-
-
-    }
-
-    class TypeAdapter extends RecyclerView.Adapter<TypeViewHodler> {
-        @Override
-        public TypeViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(context).inflate(R.layout.pager_type_item, parent, false);
-            return new TypeViewHodler(view);
-        }
-
-        @Override
-        public void onBindViewHolder(TypeViewHodler holder, int position) {
-            holder.setData(position);
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return beanList == null ? 0 : beanList.size();
-        }
-
-    }
-
-
-    static class TypeViewHodler extends RecyclerView.ViewHolder {
-        @Bind(R.id.iv_type_icon)
-        ImageView ivTypeIcon;
-
-
-        public TypeViewHodler(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-        public void setData(int position) {
-
-            TypeBean.DataBean.ItemsBean itemsBean = beanList.get(position);
-            String img = itemsBean.getCover_img();
-
-
-//            Picasso.with(context)
-//                    .load(img)
-////                    .transform(new )
-//                    .into(ivTypeIcon);
-
-            Glide.with(context)
-                    .load(img)
-                    .error(R.drawable.bg_next_lottery_bottom)
-                    .placeholder(R.drawable.bg_next_lottery_bottom)
-                    .bitmapTransform(new RoundedCornersTransformation(context, 15, 5))
-                    .into(ivTypeIcon);
-
-
-        }
     }
 
     public void onUnsubscribe() {

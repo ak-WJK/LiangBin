@@ -4,15 +4,12 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.adapter.BrandAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
@@ -21,8 +18,6 @@ import com.wjk2288.liangbin.activity.shop.service.NetService;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -39,10 +34,11 @@ public class BrandPager extends BasePager {
 
     private ListView listview;
 
+    private MaterialRefreshLayout materialRefreshLayout;
 
-    private List<BrandBean.DataBean.ItemsBean> itemsBeanList;
 
     private int pager = 1;
+    private BrandAdapter adapter;
 
     public BrandPager(Context context) {
         super(context);
@@ -52,6 +48,14 @@ public class BrandPager extends BasePager {
     public View initView() {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_brand, null);
         listview = (ListView) view.findViewById(R.id.listview);
+        materialRefreshLayout = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
+
+
+        materialRefreshLayout.setWaveColor(R.color.bla);
+        materialRefreshLayout.setIsOverLay(true);
+        materialRefreshLayout.setWaveShow(true);
+        materialRefreshLayout.setLoadMore(true);
+
 
         return view;
     }
@@ -59,14 +63,81 @@ public class BrandPager extends BasePager {
     @Override
     public void initData() {
 
+        adapter = new BrandAdapter();
+        //设置适配器
+        listview.setAdapter(adapter);
+
+        //请求数据
+        RequestDatas(pager);
+
+        //设置刷新和加载
+        refreshDataListener();
+
+    }
+
+
+    private void refreshDataListener() {
+        materialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
+
+                //下拉刷新时,刷新的是首页的页面
+                pager = 1;
+                RequestDatas(pager);
+
+                materialRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        materialRefreshLayout.finishRefresh();
+
+                    }
+                }, 3000);
+
+            }
+
+            @Override
+            public void onRefreshLoadMore(final MaterialRefreshLayout materialRefreshLayout) {
+
+
+                pager++;
+
+                RequestDatas(pager);
+
+                materialRefreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        materialRefreshLayout.finishRefreshLoadMore();
+
+                    }
+                }, 3000);
+
+            }
+        });
+    }
+
+    /**
+     * load data
+     *
+     * @param pager
+     */
+    private void RequestDatas(final int pager) {
+
+        onUnsubscribe();
+
         Observer<BrandBean> observer = new Observer<BrandBean>() {
             @Override
             public void onCompleted() {
+                materialRefreshLayout.finishRefresh();
+                materialRefreshLayout.finishRefreshLoadMore();
 
             }
 
             @Override
             public void onError(Throwable e) {
+                materialRefreshLayout.finishRefresh();
+                materialRefreshLayout.finishRefreshLoadMore();
                 Log.e("TAG", "onError==" + e.getMessage());
 
             }
@@ -75,79 +146,24 @@ public class BrandPager extends BasePager {
             public void onNext(BrandBean brandBean) {
 
 
-                itemsBeanList = brandBean.getData().getItems();
+                List<BrandBean.DataBean.ItemsBean> itemsBeanList = brandBean.getData().getItems();
 
-                BrandAdapter adapter = new BrandAdapter();
-                listview.setAdapter(adapter);
+
+                //--------------
+                adapter.refreshData(itemsBeanList, pager);
+
 
             }
         };
 
         NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.BRAND_BASE_URL).create(NetService.class);
         subscription = service
-                .getBrand("Android", 20, 1, "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
+                .getBrand("Android", 20, pager, "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
 
-
-    class BrandAdapter extends BaseAdapter {
-
-
-        @Override
-        public int getCount() {
-            return itemsBeanList == null ? 0 : itemsBeanList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return itemsBeanList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder = null;
-            if (convertView == null) {
-                convertView = View.inflate(context, R.layout.pager_brand_item, null);
-                viewHolder = new ViewHolder(convertView);
-
-                convertView.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-
-            BrandBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
-
-            viewHolder.tvBrandName.setText(itemsBean.getBrand_name());
-            Picasso.with(context)
-                    .load(itemsBean.getBrand_logo())
-                    .into(viewHolder.ivBrandIcon);
-
-
-            return convertView;
-        }
-
-
-    }
-
-    static class ViewHolder {
-        @Bind(R.id.iv_brand_icon)
-        ImageView ivBrandIcon;
-        @Bind(R.id.tv_brand_name)
-        TextView tvBrandName;
-        @Bind(R.id.ib_brand_getinto)
-        ImageButton ibBrandGetinto;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
 
     public void onUnsubscribe() {
         if (subscription != null && !subscription.isUnsubscribed()) {

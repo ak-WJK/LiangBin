@@ -32,18 +32,31 @@ public class HomeAdapter extends RecyclerView.Adapter {
     private Context context;
 
     private List<HomeBean.DataBean.ItemsBean.ListBean> listBeanLists = new ArrayList<>();
+    public onImageViewClickListener listener;
 
     public HomeAdapter(Context context) {
         this.context = context;
 
     }
 
-    public void refreshData(List<HomeBean.DataBean.ItemsBean.ListBean> listBeanList) {
+    public void refreshData(List<HomeBean.DataBean.ItemsBean.ListBean> beanList, int pager) {
 
-        listBeanLists.clear();
+        if (beanList != null & beanList.size() > 0) {
+            if (pager == 1) {
 
-        listBeanLists.addAll(listBeanList);
-        notifyDataSetChanged();
+                listBeanLists.clear();
+                listBeanLists.addAll(beanList);
+                notifyDataSetChanged();
+
+            } else {
+
+                listBeanLists.addAll(beanList);
+                notifyDataSetChanged();
+
+            }
+
+        }
+
 
     }
 
@@ -95,7 +108,6 @@ public class HomeAdapter extends RecyclerView.Adapter {
         } else if (getItemViewType(position) == TYPE_FOUR) {
             TypeFourViewHodler typeFourViewHodler = (TypeFourViewHodler) holder;
             typeFourViewHodler.setData(listBeanLists, position);
-
         }
 
     }
@@ -140,9 +152,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TypeOneViewHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+
         }
 
-        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> BeanList, int position) {
+        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> BeanList, final int position) {
 
             HomeBean.DataBean.ItemsBean.ListBean bean = BeanList.get(position);
 
@@ -150,6 +164,15 @@ public class HomeAdapter extends RecyclerView.Adapter {
             Glide.with(context)
                     .load(pic_url)
                     .into(imageView);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
 
 
         }
@@ -166,9 +189,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TypeTwoViewHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+
         }
 
-        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> listBeanLists, int position) {
+        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> listBeanLists, final int position) {
 
             HomeBean.DataBean.ItemsBean.ListBean bean = listBeanLists.get(position);
 
@@ -184,7 +209,28 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     .load(pic_url2)
                     .into(ivHomeTypeTwo);
 
+
+            ivHomeTypeOne.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+            ivHomeTypeTwo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+
+
         }
+
+
     }
 
 
@@ -202,9 +248,10 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public TypeFourViewHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
         }
 
-        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> listBeanLists, int position) {
+        public void setData(List<HomeBean.DataBean.ItemsBean.ListBean> listBeanLists, final int position) {
 
             HomeBean.DataBean.ItemsBean.ListBean bean = listBeanLists.get(position);
 
@@ -229,7 +276,55 @@ public class HomeAdapter extends RecyclerView.Adapter {
                     .into(imageViewfour);
 
 
+            imageViewone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+            imageViewtwo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+
+
+            imageViewthree.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+            imageViewfour.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onImageViewListener(position);
+                    }
+                }
+            });
+
+
         }
+    }
+
+
+    //点击事件的接口
+    public interface onImageViewClickListener {
+        void onImageViewListener(int position);
+    }
+
+
+    public void setOnImageViewClickListener(onImageViewClickListener listener) {
+
+        this.listener = listener;
     }
 
 

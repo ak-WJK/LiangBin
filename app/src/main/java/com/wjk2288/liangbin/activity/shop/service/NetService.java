@@ -17,7 +17,9 @@ public interface NetService {
 
     //类型
     @GET("goodsCategory")
-    Observable<TypeBean> getType(@Query("app_key") String appkey, @Query("sig") String sig, @Query("v") String v);
+    Observable<TypeBean> getType(@Query("app_key") String appkey,
+                                 @Query("sig") String sig,
+                                 @Query("v") String v);
 
 
     //品牌
@@ -49,6 +51,8 @@ public interface NetService {
     //首页
     @GET("newShopHome")
     Observable<HomeBean> getHome(@Query("app_key") String appkey,
+                                 @Query("count") int count,
+                                 @Query("page") int page,
                                  @Query("sig") String sig,
                                  @Query("uid") String uid,
                                  @Query("user_token") String userToken,

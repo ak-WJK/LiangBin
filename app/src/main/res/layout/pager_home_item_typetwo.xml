@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="190dp"
         android:layout_weight="1"
+        android:clickable="true"
         android:scaleType="fitXY" />
 
     <ImageView
@@ -16,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="190dp"
         android:layout_weight="1"
+        android:clickable="true"
         android:scaleType="fitXY" />
 
 
