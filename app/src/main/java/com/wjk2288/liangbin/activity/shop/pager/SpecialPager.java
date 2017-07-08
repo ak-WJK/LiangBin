@@ -13,7 +13,7 @@ import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.SpecialBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
-import com.wjk2288.liangbin.activity.shop.service.NetService;
+import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;
 import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.List;
@@ -148,7 +148,7 @@ public class SpecialPager extends BasePager {
         };
 
 
-        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.SPECIAL_BASE_URL).create(NetService.class);
+        NetServiceApi service = RequestNet.getIncetance().getRetrofit(NetUtils.SPECIAL_BASE_URL).create(NetServiceApi.class);
 
 
         subscription = service

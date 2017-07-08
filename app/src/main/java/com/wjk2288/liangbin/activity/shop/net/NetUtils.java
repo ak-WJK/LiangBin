@@ -34,5 +34,14 @@ public class NetUtils {
 
     public static final String HOME_URL = "newShopHome?app_key=Android&sig=3780CB0808528F7CE99081D295EE8C0F%7C116941220826768&uid=626138098&user_token=0516ed9429352c8e1e3bd11c63ba6f54&v=1.0";
 
+    //家居
+    public static final String HOUSEHOME_BASE_URL = "http://mobile.iliangcang.com/goods/";
+
+    public static final String HOUSEHOME_URL = "http://mobile.iliangcang.com/goods/goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=1&sig=3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0";
+
+
+
+
+
 
 }

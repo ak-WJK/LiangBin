@@ -13,7 +13,7 @@ import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.HomeBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
-import com.wjk2288.liangbin.activity.shop.service.NetService;
+import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;
 import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.List;
@@ -176,7 +176,7 @@ public class HomePager extends BasePager {
             }
         };
 
-        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.HOME_BASE_URL).create(NetService.class);
+        NetServiceApi service = RequestNet.getIncetance().getRetrofit(NetUtils.HOME_BASE_URL).create(NetServiceApi.class);
 
         subscription = service
                 .getHome("Android",

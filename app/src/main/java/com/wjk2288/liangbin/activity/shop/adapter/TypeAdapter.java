@@ -27,6 +27,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHodler
 
 
     private List<TypeBean.DataBean.ItemsBean> beanList = new ArrayList<>();
+    public onItemClickListener listener;
 
     @Override
     public TypeViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,8 +36,16 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHodler
     }
 
     @Override
-    public void onBindViewHolder(TypeViewHodler holder, int position) {
+    public void onBindViewHolder(TypeViewHodler holder, final int position) {
         holder.setData(position, beanList);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
 
     }
 
@@ -54,6 +63,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHodler
         public TypeViewHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
         }
 
         public void setData(int position, List<TypeBean.DataBean.ItemsBean> beanList) {
@@ -85,6 +95,15 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHodler
             notifyDataSetChanged();
 
         }
+    }
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+
+        this.listener = listener;
     }
 
 

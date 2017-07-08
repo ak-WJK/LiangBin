@@ -1,5 +1,6 @@
 package com.wjk2288.liangbin.activity.shop.pager;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,12 +10,14 @@ import android.view.View;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.activity.MainActivity;
 import com.wjk2288.liangbin.activity.shop.adapter.TypeAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
+import com.wjk2288.liangbin.activity.shop.fragment.TypeShowFragment;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
-import com.wjk2288.liangbin.activity.shop.service.NetService;
+import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;
 
 import java.util.List;
 
@@ -61,7 +64,6 @@ public class TypePager extends BasePager {
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
 
 
-
         materialRefreshLayout.setWaveColor(R.color.bla);
         materialRefreshLayout.setIsOverLay(true);
         materialRefreshLayout.setWaveShow(true);
@@ -73,9 +75,45 @@ public class TypePager extends BasePager {
     @Override
     public void initData() {
 
+        //请求数据
         RequestDatas();
 
+        //刷新数据
         refreshListener();
+
+        //设置监听
+        setItemListener();
+
+
+    }
+
+    private void setItemListener() {
+        adapter.setOnItemClickListener(new TypeAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                TypeShowFragment showFragment = new TypeShowFragment();
+
+                MainActivity mainActivity = (MainActivity) context;
+
+                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
+
+                if (showFragment != null) {
+
+
+                    fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+
+//                    fm.setCustomAnimations(R.animator.out_to_left,
+//                            R.animator.in_from_right
+//                    );
+
+                    fm.replace(R.id.main_fl, showFragment);
+                    fm.addToBackStack(null);
+                    fm.commit();
+                }
+
+
+            }
+        });
 
 
     }
@@ -103,7 +141,7 @@ public class TypePager extends BasePager {
 
     private void RequestDatas() {
         onUnsubscribe();
-        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.TYPE_BASE_URL).create(NetService.class);
+        NetServiceApi service = RequestNet.getIncetance().getRetrofit(NetUtils.TYPE_BASE_URL).create(NetServiceApi.class);
         Observer<TypeBean> observer = new Observer<TypeBean>() {
             @Override
             public void onCompleted() {

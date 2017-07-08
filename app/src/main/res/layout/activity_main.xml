@@ -11,9 +11,11 @@
         android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_weight="1">
 
     </FrameLayout>
+
 
     <RadioGroup
         android:id="@+id/rg_main"
@@ -55,4 +57,5 @@
 
 
     </RadioGroup>
+
 </LinearLayout>

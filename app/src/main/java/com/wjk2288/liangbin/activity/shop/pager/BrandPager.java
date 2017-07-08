@@ -14,7 +14,7 @@ import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
-import com.wjk2288.liangbin.activity.shop.service.NetService;
+import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;
 
 import java.util.List;
 
@@ -156,7 +156,7 @@ public class BrandPager extends BasePager {
             }
         };
 
-        NetService service = RequestNet.getIncetance().getRetrofit(NetUtils.BRAND_BASE_URL).create(NetService.class);
+        NetServiceApi service = RequestNet.getIncetance().getRetrofit(NetUtils.BRAND_BASE_URL).create(NetServiceApi.class);
         subscription = service
                 .getBrand("Android", 20, pager, "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
                 .subscribeOn(Schedulers.newThread())

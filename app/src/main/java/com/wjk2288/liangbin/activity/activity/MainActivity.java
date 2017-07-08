@@ -1,9 +1,9 @@
 package com.wjk2288.liangbin.activity.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
@@ -11,8 +11,8 @@ import android.widget.RadioGroup;
 
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
-import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.DaRenFragment;
+import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SelfFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SharedFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.ShoppingFragment;
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private int position;
     private ArrayList<BaseFragment> fragments;
     private Fragment fragment;
+    private FragmentTransaction fm;
 
 
     @Override
@@ -111,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void switchFragment(BaseFragment currentFragment) {
-        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
+        fm = getFragmentManager().beginTransaction();
+//        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
         if (currentFragment != null && !currentFragment.isAdded()) {
             if (fragment != currentFragment) {
                 if (fragment != null) {
@@ -129,5 +131,15 @@ public class MainActivity extends AppCompatActivity {
         fm.commit();
 
 
+    }
+
+    public Fragment getShopFragment() {
+        BaseFragment shoppingFragment = fragments.get(0);
+        if (shoppingFragment != null) {
+
+            return shoppingFragment;
+        }
+
+        return new ShoppingFragment();
     }
 }
