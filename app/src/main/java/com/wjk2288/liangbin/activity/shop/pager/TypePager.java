@@ -11,7 +11,7 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.activity.MainActivity;
-import com.wjk2288.liangbin.activity.shop.adapter.TypeAdapter;
+import com.wjk2288.liangbin.activity.shop.adapter.typepageradapter.TypeAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;

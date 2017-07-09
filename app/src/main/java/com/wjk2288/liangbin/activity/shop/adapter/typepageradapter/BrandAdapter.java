@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.adapter;
+package com.wjk2288.liangbin.activity.shop.adapter.typepageradapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wjk2288.liangbin.R;
-import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
+import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 
 import java.util.ArrayList;
 import java.util.List;

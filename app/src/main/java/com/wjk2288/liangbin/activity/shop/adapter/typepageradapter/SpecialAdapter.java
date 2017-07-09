@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.adapter;
+package com.wjk2288.liangbin.activity.shop.adapter.typepageradapter;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
-import com.wjk2288.liangbin.activity.shop.bean.SpecialBean;
+import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.SpecialBean;
 
 import java.util.ArrayList;
 import java.util.List;

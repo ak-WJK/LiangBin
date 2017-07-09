@@ -5,6 +5,9 @@
     android:background="@color/darenbackcolor"
     android:orientation="vertical">
 
+
+    <include layout="@layout/fragment_base_title"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"

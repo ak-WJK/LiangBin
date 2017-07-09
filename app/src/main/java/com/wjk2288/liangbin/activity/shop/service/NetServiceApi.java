@@ -1,8 +1,9 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
-import com.wjk2288.liangbin.activity.shop.bean.BrandBean;
-import com.wjk2288.liangbin.activity.shop.bean.HomeBean;
-import com.wjk2288.liangbin.activity.shop.bean.SpecialBean;
+import com.wjk2288.liangbin.activity.shop.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
+import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
+import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.SpecialBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeShowBean;
 
@@ -125,6 +126,15 @@ public interface NetServiceApi {
 
 
     //艺术
+
+
+    @GET("masterList")
+    Observable<DaRenBean> getDaRen(@Query("app_key") String appkey,
+                                   @Query("count") int count,
+                                   @Query("page") int page,
+                                   @Query("sig") String sig,
+                                   @Query("v") String v
+    );
 
 
 }

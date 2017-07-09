@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.adapter;
+package com.wjk2288.liangbin.activity.shop.adapter.typepageradapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

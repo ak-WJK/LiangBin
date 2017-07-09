@@ -49,6 +49,7 @@ public class ShoppingFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
 
+
         return view;
     }
 

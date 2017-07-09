@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@null"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_daren_icon"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_daren_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:lines="1"
+        android:text="成龙"
+        android:textColor="@color/textwhitecolor"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_daren_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="人物简介"
+        android:textColor="#cccbcb"
+        android:textSize="10sp" />
+
+</LinearLayout>

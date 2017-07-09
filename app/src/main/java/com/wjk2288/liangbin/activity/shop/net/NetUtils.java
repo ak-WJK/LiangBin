@@ -27,7 +27,7 @@ public class NetUtils {
     //礼物页面
     public static final String GIFT_BASE_URL = "http://mobile.iliangcang.com/goods/";
 
-    public static final String GIFT_URL = "http://mobile.iliangcang.com/goods/goodsList?app_key=Android&count=10&list_id=7&page=1&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0";
+    public static final String GIFT_URL = "goodsList?app_key=Android&count=10&list_id=7&page=1&sig=73760B2740FA36D5A273523FBC9295FE%7C285269230036268&v=1.0";
 
     //首页页面
     public static final String HOME_BASE_URL = "http://mobile.iliangcang.com/goods/";
@@ -37,11 +37,12 @@ public class NetUtils {
     //家居
     public static final String HOUSEHOME_BASE_URL = "http://mobile.iliangcang.com/goods/";
 
-    public static final String HOUSEHOME_URL = "http://mobile.iliangcang.com/goods/goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=1&sig=3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0";
+    public static final String HOUSEHOME_URL = "goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=1&sig=3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0";
 
 
-
-
+    //达人首页（默认推荐）
+    public static final String DAREN_BASE_URL = "http://mobile.iliangcang.com/user/";
+    public static final String DAREN_URL = "masterList?app_key=Android&count=18&page=1&sig=BF287AF953103F390674E73DDA18CFD8|639843030233268&v=1.0";
 
 
 }
