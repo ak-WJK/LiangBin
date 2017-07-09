@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/textwhitecolor"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_whole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pricescreeningcolor"
+        android:padding="10dp"
+        android:text="全 部"
+        android:textColor="@color/textwhitecolor"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_levelone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0-200"
+        android:textColor="#3e3e3e"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eca6a6a6" />
+
+
+    <TextView
+        android:id="@+id/tv_leveltwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="201-500"
+        android:textColor="#3e3e3e"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eca6a6a6" />
+
+    <TextView
+        android:id="@+id/tv_levelthree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="501-1000"
+        android:textColor="#3e3e3e"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eca6a6a6" />
+
+    <TextView
+        android:id="@+id/tv_levelfour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="1001-3000"
+        android:textColor="#3e3e3e"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eca6a6a6" />
+
+
+    <TextView
+        android:id="@+id/tv_levelfive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="3000以上"
+        android:textColor="#3e3e3e"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="#eca6a6a6" />
+
+
+</LinearLayout>

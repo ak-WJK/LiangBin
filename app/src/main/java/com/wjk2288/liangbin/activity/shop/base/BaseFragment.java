@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import butterknife.ButterKnife;
 import rx.Subscription;
 
 /**
@@ -65,10 +65,9 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    public void showToast(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
+
 }

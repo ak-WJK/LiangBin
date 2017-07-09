@@ -14,7 +14,7 @@ import com.wjk2288.liangbin.activity.activity.MainActivity;
 import com.wjk2288.liangbin.activity.shop.adapter.TypeAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
-import com.wjk2288.liangbin.activity.shop.fragment.TypeShowFragment;
+import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
 import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;

@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.adapter;
+package com.wjk2288.liangbin.activity.shop.adapter.showadapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -92,7 +92,7 @@ public class TypeShowAdapter extends RecyclerView.Adapter<TypeShowAdapter.TypeSh
             tvContent.setText(goods_name);
             tvType.setText(brand_name);
 //            tvPrice.setText(discount_price);
-            tvOldpric.setText("¥"+price);
+            tvPrice.setText("¥" + price);
             tvZan.setText(like_count);
 
 

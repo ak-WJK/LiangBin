@@ -1,9 +1,9 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
-import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
+import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
 
 /**
@@ -12,17 +12,18 @@ import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
 
 public class DaRenFragment extends BaseFragment {
 
-    private TextView textView;
-
     @Override
     public View initView() {
-        textView = new TextView(context);
-        textView.setTextColor(Color.BLACK);
-        return textView;
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_daren, null);
+
+        return view;
     }
 
     @Override
     protected void initData() {
-        textView.setText("达人");
+
+        //设置适配器
+
+
     }
 }

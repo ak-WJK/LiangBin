@@ -16,6 +16,7 @@ import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SelfFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SharedFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.ShoppingFragment;
+import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;
 
 import java.util.ArrayList;
 
@@ -133,13 +134,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public Fragment getShopFragment() {
+    public void getShopFragment(TypeShowFragment typeShowFragment) {
         BaseFragment shoppingFragment = fragments.get(0);
-        if (shoppingFragment != null) {
+        if (shoppingFragment != null && !shoppingFragment.isAdded()) {
+            if (fragment != typeShowFragment) {
+                if (fragments != null) {
+                    fm.hide(fragment);
+                }
+                fm.add(R.id.main_fl, typeShowFragment);
+            } else {
+                if (fragments != null) {
+                    fm.hide(fragment);
+                }
+                fm.show(typeShowFragment);
+            }
 
-            return shoppingFragment;
         }
 
-        return new ShoppingFragment();
+//        return new ShoppingFragment();
     }
 }

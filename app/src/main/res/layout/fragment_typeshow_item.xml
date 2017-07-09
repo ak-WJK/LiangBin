@@ -24,7 +24,7 @@
         android:padding="5dp"
         android:text="产品描述"
         android:textColor="#fff"
-        android:textSize="13sp" />
+        android:textSize="12sp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -38,10 +38,10 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:lines="1"
-            android:padding="5dp"
+            android:paddingRight="10dp"
             android:text="产品类型"
             android:textColor="#f1737373"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_zan"
@@ -53,6 +53,7 @@
             android:layout_marginRight="10dp"
             android:drawableLeft="@drawable/like_not_heart"
             android:drawablePadding="3dp"
+            android:paddingLeft="12dp"
             android:text="685"
             android:textColor="#75a9c7"
             android:textSize="12sp"
