@@ -1,12 +1,12 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * Created by Administrator on 2017/7/6.
  */
 
-public class DaRenFragment extends BaseFragment {
+public class DaRenFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.recyclerview)
     RecyclerView recyclerview;
@@ -47,6 +47,14 @@ public class DaRenFragment extends BaseFragment {
     private int pager = 1;
 
     private boolean isselect = false;
+
+    private TextView mTv_default_tuijian;
+    private TextView mTv_zuiduo_tuijian;
+    private TextView mTv_zuishou_welcome;
+    private TextView mTv_zuixin_tuijian;
+    private TextView mTv_zuixin_jinru;
+    private PopupWindow popupWindow;
+
 
     @Override
     public View initView() {
@@ -68,9 +76,18 @@ public class DaRenFragment extends BaseFragment {
                 isselect = !isselect;
                 if (isselect) {
                     ibShopCart.setBackgroundResource(R.drawable.close);
+
+                    showPopupWindow();
+                    if (!popupWindow.isShowing()) {
+                        ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
+                    }
+
                 } else {
                     ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
-
+                    showPopupWindow();
+                    if (!popupWindow.isShowing()) {
+                        ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
+                    }
                 }
 
 
@@ -87,6 +104,77 @@ public class DaRenFragment extends BaseFragment {
 
 
     }
+
+    private void showPopupWindow() {
+        View popupView = LayoutInflater.from(context).inflate(R.layout.fragment_daren_screening_popu, null);
+        popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        bindViews(popupView);
+
+        //设置popup在弹出后所有焦点都是popup处理
+        popupWindow.setFocusable(true);
+
+        //设置外部可点击的
+        popupWindow.setOutsideTouchable(true);
+
+//        popupWindow.showAtLocation(ibShopCart, Gravity.BOTTOM, 0, 0);
+        popupWindow.showAsDropDown(ibShopCart);
+
+        if (popupWindow != null && popupWindow.isShowing()) {
+
+            ibShopCart.setBackgroundResource(R.drawable.close);
+
+        }
+        if (!popupWindow.isShowing()) {
+
+            ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
+
+        }
+    }
+
+    private void bindViews(View popupView) {
+
+        mTv_default_tuijian = (TextView) popupView.findViewById(R.id.tv_default_tuijian);
+        mTv_zuiduo_tuijian = (TextView) popupView.findViewById(R.id.tv_zuiduo_tuijian);
+        mTv_zuishou_welcome = (TextView) popupView.findViewById(R.id.tv_zuishou_welcome);
+        mTv_zuixin_tuijian = (TextView) popupView.findViewById(R.id.tv_zuixin_tuijian);
+        mTv_zuixin_jinru = (TextView) popupView.findViewById(R.id.tv_zuixin_jinru);
+
+        mTv_default_tuijian.setOnClickListener(this);
+        mTv_zuiduo_tuijian.setOnClickListener(this);
+        mTv_zuishou_welcome.setOnClickListener(this);
+        mTv_zuixin_tuijian.setOnClickListener(this);
+        mTv_zuixin_jinru.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_default_tuijian:
+                showToast("默认推荐");
+                popupWindow.dismiss();
+                break;
+            case R.id.tv_zuiduo_tuijian:
+                showToast("最多推荐");
+                popupWindow.dismiss();
+                break;
+            case R.id.tv_zuishou_welcome:
+                showToast("最受欢迎");
+                popupWindow.dismiss();
+                break;
+            case R.id.tv_zuixin_tuijian:
+                showToast("最新推荐");
+                popupWindow.dismiss();
+                break;
+            case R.id.tv_zuixin_jinru:
+                showToast("最新加入");
+                popupWindow.dismiss();
+                break;
+
+        }
+
+    }
+
 
     private void requestData() {
         onUnsubscriber();
@@ -131,11 +219,5 @@ public class DaRenFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+
 }

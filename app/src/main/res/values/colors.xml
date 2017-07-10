@@ -7,6 +7,7 @@
     <color name="black">#f71b1a1a</color>
     <color name="pricescreeningcolor">#f1b1b1b1</color>
     <color name="textwhitecolor">#FFFFFF</color>
+    <color name="textwhitecolortuijian">#d9d9d9</color>
     <color name="darenbackcolor">#262626</color>
 
 </resources>

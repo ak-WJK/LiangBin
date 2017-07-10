@@ -2,9 +2,12 @@ package com.wjk2288.liangbin.activity.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -131,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
         fragment = currentFragment;
         fm.commit();
 
-
     }
 
     public void getShopFragment(TypeShowFragment typeShowFragment) {
@@ -152,5 +154,49 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        return new ShoppingFragment();
+    }
+
+
+    private boolean isback = false;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("退出用")
+                    .setMessage("客观慢走,欢迎下次光临")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .show();
+
+
+            //双击退出应用
+
+//            if (isback) {
+//                finish();
+//            }
+//
+//            isback = true;
+//
+//            new Timer().schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    isback = false;
+//                }
+//            }, 2000);
+
+            return true;
+        }
+
+
+        return super.onKeyDown(keyCode, event);
+
     }
 }

@@ -34,7 +34,7 @@ public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHod
 
     @Override
     public DarenViewHodler onCreateViewHolder(ViewGroup parent, int viewType) {
-        //此方式布局会使
+
         View view = LayoutInflater.from(context).inflate(R.layout.fragment_daren_item, parent, false);
 //        View view = View.inflate(context, R.layout.fragment_daren_item, null);
         return new DarenViewHodler(view);
