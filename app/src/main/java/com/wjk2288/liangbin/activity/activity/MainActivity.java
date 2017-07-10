@@ -3,6 +3,7 @@ package com.wjk2288.liangbin.activity.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +20,6 @@ import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SelfFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SharedFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.ShoppingFragment;
-import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;
 
 import java.util.ArrayList;
 
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<BaseFragment> fragments;
     private Fragment fragment;
     private FragmentTransaction fm;
+    private BaseFragment currentFragment;
 
 
     @Override
@@ -109,9 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-        BaseFragment currentFragment = fragments.get(position);
+        currentFragment = fragments.get(position);
         switchFragment(currentFragment);
-
     }
 
 
@@ -136,24 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getShopFragment(TypeShowFragment typeShowFragment) {
-        BaseFragment shoppingFragment = fragments.get(0);
-        if (shoppingFragment != null && !shoppingFragment.isAdded()) {
-            if (fragment != typeShowFragment) {
-                if (fragments != null) {
-                    fm.hide(fragment);
-                }
-                fm.add(R.id.main_fl, typeShowFragment);
-            } else {
-                if (fragments != null) {
-                    fm.hide(fragment);
-                }
-                fm.show(typeShowFragment);
-            }
 
-        }
-
-//        return new ShoppingFragment();
+    public BaseFragment getShopFragment() {
+        ShoppingFragment fragment = (ShoppingFragment) fragments.get(0);
+        return fragment;
     }
 
 
@@ -198,5 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
 
+    }
+
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 }

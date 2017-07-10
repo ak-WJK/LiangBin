@@ -26,6 +26,7 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static android.view.View.Z;
 import static com.wjk2288.liangbin.R.id.recyclerview;
 
 /**
@@ -100,11 +101,17 @@ public class TypePager extends BasePager {
                 if (showFragment != null) {
 
 
+                    //原动画没毛病
                     fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 
-//                    fm.setCustomAnimations(R.animator.out_to_left,
-//                            R.animator.in_from_right
-//                    );
+                    /*
+                    *
+                    *
+                    * 动画有bug待解
+                    *
+                    *
+                    * */
+//                    fm.setCustomAnimations(R.anim.in_from_right, 0);
 
                     fm.replace(R.id.main_fl, showFragment);
                     fm.addToBackStack(null);

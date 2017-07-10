@@ -1,5 +1,6 @@
 package com.wjk2288.liangbin.activity.shop.fragment.showfragment;
 
+import android.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.activity.MainActivity;
@@ -125,15 +125,24 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
         ibShopBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "111111111", Toast.LENGTH_SHORT).show();
+
                 MainActivity mainActivity = (MainActivity) context;
-//                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
+                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
 
-                TypeShowFragment typeShowFragment = new TypeShowFragment();
-                mainActivity.getShopFragment(typeShowFragment);
+                TypeShowFragment typeShowFragment = TypeShowFragment.this;
 
-//                fm.replace(R.id.main_fl,shopFragment);
+                BaseFragment shopFragment = mainActivity.getShopFragment();
 
+                if (shopFragment != null) {
+
+
+                    fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    fm.replace(R.id.main_fl, shopFragment);
+                    //会出现隐藏了但是现实不了的问题
+                    fm.show(shopFragment);
+                }
+                fm.hide(typeShowFragment);
+                fm.commit();
 
             }
         });
