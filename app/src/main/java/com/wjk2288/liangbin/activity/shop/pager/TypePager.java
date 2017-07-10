@@ -2,6 +2,7 @@ package com.wjk2288.liangbin.activity.shop.pager;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +27,6 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static android.view.View.Z;
 import static com.wjk2288.liangbin.R.id.recyclerview;
 
 /**
@@ -101,8 +101,15 @@ public class TypePager extends BasePager {
                 if (showFragment != null) {
 
 
+                    //fragment之间传递数据
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", position);
+                    showFragment.setArguments(bundle);
+
                     //原动画没毛病
                     fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+
+
 
                     /*
                     *

@@ -56,7 +56,12 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
 
 
     private int pager = 1;
+
     private PopupWindow popupWindow;
+    private String[] catCode = {"0045", "0055", "0062", "0069", "0077",
+            "0082", "0092", "0101", "0112", "0125", "0129", "0141", "0154", "0166",
+            "0172", "0182", "0190", "0198", "0214"};
+    private int position;
 
 
     @Override
@@ -72,6 +77,10 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     protected void initData() {
+
+        //接收传递过来的数据
+        position = getArguments().getInt("position");
+
 
         //设置适配器
         adapter = new TypeShowAdapter(context);
@@ -112,7 +121,7 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
         onUnsubscriber();
         NetServiceApi serviceApi = RequestNet.getIncetance().getRetrofit(NetUtils.HOUSEHOME_BASE_URL).create(NetServiceApi.class);
         subscription = serviceApi
-                .getTypeShow("Android", "0045", 10, 1, 1, "3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0", "1.0")
+                .getTypeShow("Android", catCode[position], 10, 1, pager, "3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0", "1.0")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
@@ -138,11 +147,12 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
 
                     fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                     fm.replace(R.id.main_fl, shopFragment);
-                    //会出现隐藏了但是现实不了的问题
-                    fm.show(shopFragment);
+                    //会出现隐藏了但是显示不了的问题
+//                    fm.show(shopFragment);
+                    fm.hide(typeShowFragment);
+                    fm.commit();
                 }
-                fm.hide(typeShowFragment);
-                fm.commit();
+
 
             }
         });
