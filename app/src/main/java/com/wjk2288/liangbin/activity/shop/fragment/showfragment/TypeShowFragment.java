@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.activity.MainActivity;
+import com.wjk2288.liangbin.activity.shop.activity.GoodsDetailsActivity;
 import com.wjk2288.liangbin.activity.shop.adapter.showadapter.TypeShowAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeShowBean;

@@ -18,6 +18,11 @@ public class NetUtils {
     public static final String BRAND_URL = "brandList?app_key=Android&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
 
 
+    //品牌页面详情
+    public static final String BRAND_DETAILS_BASE_URL = "http://mobile.iliangcang.com/brand/";
+    public static final String BRAND_DETATILS_URL = "brandShopList?app_key=Android&brand_id=14&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
+
+
     //专题页面
     public static final String SPECIAL_BASE_URL = "http://mobile.iliangcang.com/goods/";
 
@@ -40,7 +45,6 @@ public class NetUtils {
     public static final String HOUSEHOME_URL = "goodsShare?app_key=Android&cat_code=0045&count=10&coverId=1&page=1&sig=3D3968703BE211CC6D931C9D4F737FB4%7C290216330933368&v=1.0";
 
     //商品详情页面
-
     public static final String GOODSDETAILS_BASE_URL = "http://mobile.iliangcang.com/goods/";
 
     public static final String GOODSDETAILS_URL = "goodsDetail?app_key=Android&goods_id=102939&sig=BF287AF953103F390674E73DDA18CFD8%7C639843030233268&v=1.0";

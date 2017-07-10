@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.fragment.showfragment;
+package com.wjk2288.liangbin.activity.shop.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

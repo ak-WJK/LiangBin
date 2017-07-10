@@ -43,7 +43,7 @@ public class HomePager extends BasePager {
     private HomeAdapter adapter;
 
     private int pager = 1;
-    private List<HomeBean.DataBean.ItemsBean.ListBean> listBeanList;
+    private List<HomeBean.DataBean.ItemsBean.ListBeanX> listBeanXList;
 
 
     public HomePager(Context context) {
@@ -79,36 +79,8 @@ public class HomePager extends BasePager {
         refreshListener();
 
 
-        //设置点击进入详情页
-//        itemListener();
-
-
     }
 
-
-//    private void itemListener() {
-//        adapter.setOnImageViewClickListener(new HomeAdapter.onImageViewClickListener() {
-//            @Override
-//            public void onImageViewListener(int position) {
-//                String topic_name1 = listBeanList.get(position).getOne().getTopic_name();
-//                LogUtils.e("TAG", "topic_name1==" + topic_name1);
-//
-//                String topic_name2 = listBeanList.get(position).getTwo().getTopic_name();
-//                LogUtils.e("TAG", "topic_name2==" + topic_name2);
-//
-//
-//                String topic_name3 = listBeanList.get(position).getThree().getTopic_name();
-//                LogUtils.e("TAG", "topic_name3==" + topic_name3);
-//
-//
-//                String topic_name4 = listBeanList.get(position).getFour().getTopic_name();
-//                LogUtils.e("TAG", "topic_name4==" + topic_name4);
-//
-//
-//            }
-//        });
-
-//}
 
     private void refreshListener() {
         materialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
@@ -169,9 +141,9 @@ public class HomePager extends BasePager {
 
             @Override
             public void onNext(HomeBean homeBean) {
-                listBeanList = homeBean.getData().getItems().getList();
+                listBeanXList = homeBean.getData().getItems().getList();
 
-                adapter.refreshData(listBeanList, pager);
+                adapter.refreshData(listBeanXList, pager);
 
             }
         };

@@ -23,7 +23,8 @@
         <activity android:name=".activity.activity.GuideActivity" />
         <activity android:name=".activity.activity.AnimationActivity" />
         <activity android:name=".activity.activity.TypeShowActivity" />
-        <activity android:name=".activity.shop.fragment.showfragment.GoodsDetailsActivity"></activity>
+        <activity android:name=".activity.shop.activity.GoodsDetailsActivity" />
+        <activity android:name=".activity.shop.activity.BrandDetailsActivity"></activity>
     </application>
 
 </manifest>

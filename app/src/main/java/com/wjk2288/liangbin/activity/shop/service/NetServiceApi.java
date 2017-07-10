@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
 import com.wjk2288.liangbin.activity.shop.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
@@ -27,7 +28,20 @@ public interface NetServiceApi {
 
     //品牌
     @GET("brandList")
-    Observable<BrandBean> getBrand(@Query("app_key") String appkey, @Query("count") int count, @Query("page") int page, @Query("sig") String sig, @Query("v") String v);
+    Observable<BrandBean> getBrand(@Query("app_key") String appkey,
+                                   @Query("count") int count,
+                                   @Query("page") int page,
+                                   @Query("sig") String sig,
+                                   @Query("v") String v);
+
+    //品牌详情
+    @GET("brandShopList")
+    Observable<BrandDetailsBean> getBrandDetails(@Query("app_key") String appkey,
+                                                 @Query("brand_id") int brandId,
+                                                 @Query("count") int count,
+                                                 @Query("page") int page,
+                                                 @Query("sig") String sig,
+                                                 @Query("v") String v);
 
 
     //专题

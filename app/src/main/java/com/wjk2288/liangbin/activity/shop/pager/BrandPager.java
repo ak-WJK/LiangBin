@@ -1,6 +1,8 @@
 package com.wjk2288.liangbin.activity.shop.pager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ListView;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.activity.BrandDetailsActivity;
 import com.wjk2288.liangbin.activity.shop.adapter.typepageradapter.BrandAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
@@ -39,6 +42,7 @@ public class BrandPager extends BasePager {
 
     private int pager = 1;
     private BrandAdapter adapter;
+    private List<BrandBean.DataBean.ItemsBean> itemsBeanList;
 
     public BrandPager(Context context) {
         super(context);
@@ -71,12 +75,13 @@ public class BrandPager extends BasePager {
         RequestDatas(pager);
 
         //设置刷新和加载
-        refreshDataListener();
+        initListener();
 
     }
 
 
-    private void refreshDataListener() {
+    private void initListener() {
+        //设置刷新的监听
         materialRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
@@ -115,6 +120,25 @@ public class BrandPager extends BasePager {
 
             }
         });
+
+        adapter.setOnItemClickListener(new BrandAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                BrandBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+
+                Intent intent = new Intent(context, BrandDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("bundle",  itemsBean);
+                intent.putExtra("position" , position);
+                intent.putExtras(bundle);
+//                intent.putExtra("brandId", brand_id);
+                context.startActivity(intent);
+
+            }
+        });
+
+
     }
 
     /**
@@ -146,19 +170,25 @@ public class BrandPager extends BasePager {
             public void onNext(BrandBean brandBean) {
 
 
-                List<BrandBean.DataBean.ItemsBean> itemsBeanList = brandBean.getData().getItems();
+                itemsBeanList = brandBean.getData().getItems();
 
 
                 //--------------
                 adapter.refreshData(itemsBeanList, pager);
 
-
             }
         };
 
-        NetServiceApi service = RequestNet.getIncetance().getRetrofit(NetUtils.BRAND_BASE_URL).create(NetServiceApi.class);
+        NetServiceApi service = RequestNet.getIncetance()
+                .getRetrofit(NetUtils.BRAND_BASE_URL)
+                .create(NetServiceApi.class);
+
         subscription = service
-                .getBrand("Android", 20, pager, "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768", "1.0")
+                .getBrand("Android",
+                        20,
+                        pager,
+                        "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768",
+                        "1.0")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

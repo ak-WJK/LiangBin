@@ -1,18 +1,19 @@
 package com.wjk2288.liangbin.activity.shop.bean.typepagerbean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/6.
  */
 
-public class BrandBean {
+public class BrandBean implements Serializable {
 
 
     /**
-     * meta : {"status":0,"server_time":"2017-07-06 23:11:31","account_id":0,"cost":0.0047929286956787,"errdata":null,"errmsg":""}
+     * meta : {"status":0,"server_time":"2017-07-10 18:40:37","account_id":0,"cost":0.0046460628509521,"errdata":null,"errmsg":""}
      * version : 1
-     * data : {"has_more":true,"num_items":"736","items":[{"brand_id":841,"brand_name":"HAZE Collection","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/841.jpg"},{"brand_id":840,"brand_name":"良集","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/840.jpg"},{"brand_id":839,"brand_name":"九行","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/839.jpg?t=1498618673"},{"brand_id":838,"brand_name":"HERING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/838.jpg"},{"brand_id":837,"brand_name":"OFESS 翱飞思","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/837.jpg"},{"brand_id":836,"brand_name":"COCO-MAT","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/836.jpg"},{"brand_id":835,"brand_name":"Queenest小燕喔","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/835.jpg"},{"brand_id":834,"brand_name":"Inaday's","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/834.jpg"},{"brand_id":833,"brand_name":"注销","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/833.jpg"},{"brand_id":832,"brand_name":"Lilt","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/832.jpg"},{"brand_id":831,"brand_name":"塔牌","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/831.jpg"},{"brand_id":830,"brand_name":"麦风","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/830.jpg"},{"brand_id":829,"brand_name":"VH","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/829.jpg"},{"brand_id":828,"brand_name":"MIRAHOME","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/828.jpg"},{"brand_id":827,"brand_name":"MOUS","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/827.jpg"},{"brand_id":826,"brand_name":"Petrus/柏翠","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/826.jpg?t=1497433209"},{"brand_id":825,"brand_name":"DOWNLAND","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/825.jpg?t=1497421482"},{"brand_id":824,"brand_name":"JosephJoseph","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/824.jpg"},{"brand_id":823,"brand_name":"Voladores韦纳多斯","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/823.jpg?t=1497003850"},{"brand_id":822,"brand_name":"印加优品INKA NUTRITION","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/822.jpg"}]}
+     * data : {"has_more":true,"num_items":"744","items":[{"brand_id":849,"brand_name":"LC LIVING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/849.jpg"},{"brand_id":848,"brand_name":"Yutong Studio","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/848.jpg?t=1499682039"},{"brand_id":847,"brand_name":"ARCHITECTMADE","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/847.jpg"},{"brand_id":846,"brand_name":"WHOOSH","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/846.jpg"},{"brand_id":845,"brand_name":"富信","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/845.jpg"},{"brand_id":844,"brand_name":"BALMUDA巴慕达","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/844.jpg?t=1499402977"},{"brand_id":843,"brand_name":"如果","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/843.jpg?t=1499404527"},{"brand_id":842,"brand_name":"科大讯飞","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/842.jpg?t=1499404544"},{"brand_id":841,"brand_name":"HAZE Collection","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/841.jpg"},{"brand_id":840,"brand_name":"良集","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/840.jpg"},{"brand_id":839,"brand_name":"九行","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/839.jpg?t=1498618673"},{"brand_id":838,"brand_name":"HERING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/838.jpg"},{"brand_id":837,"brand_name":"OFESS 翱飞思","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/837.jpg"},{"brand_id":836,"brand_name":"COCO-MAT","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/836.jpg"},{"brand_id":835,"brand_name":"Queenest小燕喔","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/835.jpg"},{"brand_id":834,"brand_name":"Inaday's","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/834.jpg"},{"brand_id":833,"brand_name":"注销","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/833.jpg"},{"brand_id":832,"brand_name":"Lilt","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/832.jpg"},{"brand_id":831,"brand_name":"塔牌","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/831.jpg"},{"brand_id":830,"brand_name":"麦风","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/830.jpg"}]}
      */
 
     private MetaBean meta;
@@ -43,12 +44,12 @@ public class BrandBean {
         this.data = data;
     }
 
-    public static class MetaBean {
+    public static class MetaBean implements Serializable {
         /**
          * status : 0
-         * server_time : 2017-07-06 23:11:31
+         * server_time : 2017-07-10 18:40:37
          * account_id : 0
-         * cost : 0.0047929286956787
+         * cost : 0.0046460628509521
          * errdata : null
          * errmsg :
          */
@@ -109,11 +110,11 @@ public class BrandBean {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * has_more : true
-         * num_items : 736
-         * items : [{"brand_id":841,"brand_name":"HAZE Collection","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/841.jpg"},{"brand_id":840,"brand_name":"良集","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/840.jpg"},{"brand_id":839,"brand_name":"九行","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/839.jpg?t=1498618673"},{"brand_id":838,"brand_name":"HERING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/838.jpg"},{"brand_id":837,"brand_name":"OFESS 翱飞思","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/837.jpg"},{"brand_id":836,"brand_name":"COCO-MAT","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/836.jpg"},{"brand_id":835,"brand_name":"Queenest小燕喔","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/835.jpg"},{"brand_id":834,"brand_name":"Inaday's","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/834.jpg"},{"brand_id":833,"brand_name":"注销","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/833.jpg"},{"brand_id":832,"brand_name":"Lilt","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/832.jpg"},{"brand_id":831,"brand_name":"塔牌","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/831.jpg"},{"brand_id":830,"brand_name":"麦风","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/830.jpg"},{"brand_id":829,"brand_name":"VH","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/829.jpg"},{"brand_id":828,"brand_name":"MIRAHOME","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/828.jpg"},{"brand_id":827,"brand_name":"MOUS","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/827.jpg"},{"brand_id":826,"brand_name":"Petrus/柏翠","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/826.jpg?t=1497433209"},{"brand_id":825,"brand_name":"DOWNLAND","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/825.jpg?t=1497421482"},{"brand_id":824,"brand_name":"JosephJoseph","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/824.jpg"},{"brand_id":823,"brand_name":"Voladores韦纳多斯","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/823.jpg?t=1497003850"},{"brand_id":822,"brand_name":"印加优品INKA NUTRITION","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/822.jpg"}]
+         * num_items : 744
+         * items : [{"brand_id":849,"brand_name":"LC LIVING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/849.jpg"},{"brand_id":848,"brand_name":"Yutong Studio","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/848.jpg?t=1499682039"},{"brand_id":847,"brand_name":"ARCHITECTMADE","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/847.jpg"},{"brand_id":846,"brand_name":"WHOOSH","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/846.jpg"},{"brand_id":845,"brand_name":"富信","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/845.jpg"},{"brand_id":844,"brand_name":"BALMUDA巴慕达","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/844.jpg?t=1499402977"},{"brand_id":843,"brand_name":"如果","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/843.jpg?t=1499404527"},{"brand_id":842,"brand_name":"科大讯飞","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/842.jpg?t=1499404544"},{"brand_id":841,"brand_name":"HAZE Collection","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/841.jpg"},{"brand_id":840,"brand_name":"良集","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/840.jpg"},{"brand_id":839,"brand_name":"九行","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/839.jpg?t=1498618673"},{"brand_id":838,"brand_name":"HERING","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/838.jpg"},{"brand_id":837,"brand_name":"OFESS 翱飞思","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/837.jpg"},{"brand_id":836,"brand_name":"COCO-MAT","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/836.jpg"},{"brand_id":835,"brand_name":"Queenest小燕喔","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/835.jpg"},{"brand_id":834,"brand_name":"Inaday's","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/834.jpg"},{"brand_id":833,"brand_name":"注销","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/833.jpg"},{"brand_id":832,"brand_name":"Lilt","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/832.jpg"},{"brand_id":831,"brand_name":"塔牌","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/831.jpg"},{"brand_id":830,"brand_name":"麦风","brand_logo":"http://imgs-qn.iliangcang.com/ware/brand/830.jpg"}]
          */
 
         private boolean has_more;
@@ -144,11 +145,11 @@ public class BrandBean {
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Serializable {
             /**
-             * brand_id : 841
-             * brand_name : HAZE Collection
-             * brand_logo : http://imgs-qn.iliangcang.com/ware/brand/841.jpg
+             * brand_id : 849
+             * brand_name : LC LIVING
+             * brand_logo : http://imgs-qn.iliangcang.com/ware/brand/849.jpg
              */
 
             private int brand_id;

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232f33"
+    android:orientation="vertical"
+    tools:context="com.wjk2288.liangbin.activity.shop.activity.BrandDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#f4121111">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="品牌产品"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:background="@drawable/brand_bg">
+
+        <ImageView
+            android:id="@+id/iv_brand_logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_pinpai_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_brand_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            tools:text="pingpiamaingchng" />
+
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:id="@+id/rg_chanpin_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tv_gushi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/brand_details_btn_select"
+            android:button="@null"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="品牌故事"
+            android:textColor="@drawable/brand_details_btn_textcolor_select"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/tv_chanpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/brand_details_btn_select"
+            android:button="@null"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="品牌产品"
+            android:textColor="@drawable/brand_details_btn_textcolor_select"
+            android:textSize="12sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_brand_gushi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="#cbdbe1"
+        android:textSize="11sp"
+        tools:text="北京九行商贸有限公司" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

@@ -27,6 +27,7 @@ public class BrandAdapter extends BaseAdapter {
 
 
     private List<BrandBean.DataBean.ItemsBean> itemsBeanList;
+    private onItemClickListener listener;
 
     public BrandAdapter() {
         itemsBeanList = new ArrayList<>();
@@ -49,7 +50,7 @@ public class BrandAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder = null;
 
@@ -69,6 +70,17 @@ public class BrandAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(itemsBean.getBrand_logo())
                 .into(viewHolder.ivBrandIcon);
+
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+
+            }
+        });
 
 
         return convertView;
@@ -108,6 +120,16 @@ public class BrandAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
+    }
+
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+
+        this.listener = listener;
     }
 
 
