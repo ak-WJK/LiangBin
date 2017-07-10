@@ -26,6 +26,7 @@ public class TypeShowAdapter extends RecyclerView.Adapter<TypeShowAdapter.TypeSh
     private Context context;
 
     private List<TypeShowBean.DataBean.ItemsBean> datas = null;
+    private onPagerClickListener listener;
 
 
     public TypeShowAdapter(Context context) {
@@ -41,8 +42,16 @@ public class TypeShowAdapter extends RecyclerView.Adapter<TypeShowAdapter.TypeSh
     }
 
     @Override
-    public void onBindViewHolder(TypeShowViewHodler holder, int position) {
+    public void onBindViewHolder(TypeShowViewHodler holder, final int position) {
         holder.setData(datas, position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onPagerListener(position);
+                }
+            }
+        });
 
     }
 
@@ -117,5 +126,15 @@ public class TypeShowAdapter extends RecyclerView.Adapter<TypeShowAdapter.TypeSh
         }
 
     }
+
+    public interface onPagerClickListener {
+        void onPagerListener(int position);
+    }
+
+    public void setOnPagerClickListener(onPagerClickListener listener) {
+
+        this.listener = listener;
+    }
+
 
 }

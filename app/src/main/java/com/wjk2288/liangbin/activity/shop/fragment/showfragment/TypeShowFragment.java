@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.fragment.showfragment;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,6 +63,7 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
             "0082", "0092", "0101", "0112", "0125", "0129", "0141", "0154", "0166",
             "0172", "0182", "0190", "0198", "0214"};
     private int position;
+    private List<TypeShowBean.DataBean.ItemsBean> itemsBeanList;
 
 
     @Override
@@ -111,7 +113,7 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
 
             @Override
             public void onNext(TypeShowBean typeShowBean) {
-                List<TypeShowBean.DataBean.ItemsBean> itemsBeanList = typeShowBean.getData().getItems();
+                itemsBeanList = typeShowBean.getData().getItems();
                 adapter.refreshData(itemsBeanList, pager);
 
             }
@@ -166,6 +168,24 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
             }
 
         });
+
+
+        //设置商品详情页面的点击监听
+        adapter.setOnPagerClickListener(new TypeShowAdapter.onPagerClickListener() {
+            @Override
+            public void onPagerListener(int position) {
+
+                TypeShowBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+                String goods_id = itemsBean.getGoods_id();
+                Intent intent = new Intent(context, GoodsDetailsActivity.class);
+                intent.putExtra("goodsId",goods_id);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
 
     }

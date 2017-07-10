@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
 import com.wjk2288.liangbin.activity.shop.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.TypeDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.SpecialBean;
@@ -71,6 +72,14 @@ public interface NetServiceApi {
                                          @Query("page") int page,
                                          @Query("sig") String sig,
                                          @Query("v") String v
+    );
+
+    //商品详情
+    @GET("goodsDetail")
+    Observable<TypeDetailsBean> getGoodsDetails(@Query("app_key") String appkey,
+                                                @Query("goods_id") String goodId,
+                                                @Query("sig") String sig,
+                                                @Query("v") String v
     );
 
 

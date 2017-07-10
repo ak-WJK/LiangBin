@@ -167,7 +167,6 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
                 showToast("最新加入");
                 dismissPopup();
                 break;
-
         }
 
     }
