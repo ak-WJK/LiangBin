@@ -1,6 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.adapter.typepageradapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.activity.HomeDetailsActivity;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
 import com.wjk2288.liangbin.activity.utils.LogUtils;
 
@@ -34,7 +36,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
     private Context context;
 
     private List<HomeBean.DataBean.ItemsBean.ListBeanX> listBeanLists = new ArrayList<>();
-    public onImageViewClickListener listener;
+
 
     public HomeAdapter(Context context) {
         this.context = context;
@@ -168,12 +170,10 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void setData(HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
+        public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
 
             String pic_url = listBeanX.getOne().getPic_url();
 
-
-            LogUtils.e("TAG", "pic == " + pic_url);
 
             Glide.with(context)
                     .load(pic_url)
@@ -182,9 +182,13 @@ public class HomeAdapter extends RecyclerView.Adapter {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+                    String topic_url = listBeanX.getOne().getTopic_url();
+                    String title = listBeanX.getOne().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
                 }
             });
 
@@ -207,11 +211,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void setData(HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
+        public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
 
 
             String pic_url1 = listBeanX.getOne().getPic_url();
-            LogUtils.e("TAG", "pic == " + pic_url1);
+
 
             Glide.with(context)
                     .load(pic_url1)
@@ -226,17 +230,27 @@ public class HomeAdapter extends RecyclerView.Adapter {
             ivHomeTypeOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+
+                    String topic_url = listBeanX.getOne().getTopic_url();
+                    String title = listBeanX.getOne().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
+
                 }
             });
             ivHomeTypeTwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+                    String topic_url = listBeanX.getTwo().getTopic_url();
+                    String title = listBeanX.getTwo().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
                 }
             });
 
@@ -264,7 +278,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void setData(HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
+        public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
 
             String pic_url1 = listBeanX.getOne().getPic_url();
             LogUtils.e("TAG", "piccc == " + pic_url1);
@@ -291,17 +305,28 @@ public class HomeAdapter extends RecyclerView.Adapter {
             imageViewone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+                    String topic_url = listBeanX.getOne().getTopic_url();
+                    String title = listBeanX.getOne().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
+
                 }
             });
             imageViewtwo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+
+                    String topic_url = listBeanX.getTwo().getTopic_url();
+                    String title = listBeanX.getTwo().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
+
                 }
             });
 
@@ -309,17 +334,30 @@ public class HomeAdapter extends RecyclerView.Adapter {
             imageViewthree.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+
+
+                    String topic_url = listBeanX.getThree().getTopic_url();
+                    String title = listBeanX.getThree().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
+
                 }
             });
             imageViewfour.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+
+                    String topic_url = listBeanX.getFour().getTopic_url();
+                    String title = listBeanX.getFour().getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
+
+
                 }
             });
 
@@ -340,8 +378,8 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void setData(HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
-            String pic_url = listBeanX.getPic_url();
+        public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
+            String pic_url = listBeanX.getList().get(position).getPic_url();
 
             Glide.with(context)
                     .load(pic_url)
@@ -350,26 +388,19 @@ public class HomeAdapter extends RecyclerView.Adapter {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (listener != null) {
-                        listener.onImageViewListener(position);
-                    }
+
+                    String topic_url = listBeanX.getList().get(position).getPic_url();
+
+                    String title = listBeanX.getList().get(position).getTopic_name();
+                    Intent intent = new Intent(context, HomeDetailsActivity.class);
+                    intent.putExtra("url", topic_url);
+                    intent.putExtra("name", title);
+                    context.startActivity(intent);
                 }
             });
 
 
         }
-    }
-
-
-    //点击事件的接口
-    public interface onImageViewClickListener {
-        void onImageViewListener(int position);
-    }
-
-
-    public void setOnImageViewClickListener(onImageViewClickListener listener) {
-
-        this.listener = listener;
     }
 
 
