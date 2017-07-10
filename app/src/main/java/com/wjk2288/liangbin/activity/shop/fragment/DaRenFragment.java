@@ -58,7 +58,9 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public View initView() {
+
 //        View view = LayoutInflater.from(context).inflate(R.layout.fragment_daren, null);
+
         View view = View.inflate(context, R.layout.fragment_daren, null);
         ButterKnife.bind(this, view);
 
@@ -75,24 +77,21 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
             public void onClick(View v) {
                 isselect = !isselect;
                 if (isselect) {
-                    ibShopCart.setBackgroundResource(R.drawable.close);
 
+                    ibShopCart.setBackgroundResource(R.drawable.close);
                     showPopupWindow();
-                    if (!popupWindow.isShowing()) {
-                        ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
-                    }
 
                 } else {
                     ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
-                    showPopupWindow();
-                    if (!popupWindow.isShowing()) {
-                        ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
-                    }
+                    popupWindow.dismiss();
                 }
 
 
             }
+
+
         });
+
 
         //设置适配器
         adapter = new DarenAdapter(context);
@@ -111,7 +110,7 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
         bindViews(popupView);
 
         //设置popup在弹出后所有焦点都是popup处理
-        popupWindow.setFocusable(true);
+//        popupWindow.setFocusable(true);
 
         //设置外部可点击的
         popupWindow.setOutsideTouchable(true);
@@ -119,16 +118,14 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
 //        popupWindow.showAtLocation(ibShopCart, Gravity.BOTTOM, 0, 0);
         popupWindow.showAsDropDown(ibShopCart);
 
-        if (popupWindow != null && popupWindow.isShowing()) {
+        //设置popup的dismiss的监听实现按钮的变化
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
+            }
+        });
 
-            ibShopCart.setBackgroundResource(R.drawable.close);
-
-        }
-        if (!popupWindow.isShowing()) {
-
-            ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
-
-        }
     }
 
     private void bindViews(View popupView) {
@@ -152,27 +149,32 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.tv_default_tuijian:
                 showToast("默认推荐");
-                popupWindow.dismiss();
+                dismissPopup();
                 break;
             case R.id.tv_zuiduo_tuijian:
                 showToast("最多推荐");
-                popupWindow.dismiss();
+                dismissPopup();
                 break;
             case R.id.tv_zuishou_welcome:
                 showToast("最受欢迎");
-                popupWindow.dismiss();
+                dismissPopup();
                 break;
             case R.id.tv_zuixin_tuijian:
                 showToast("最新推荐");
-                popupWindow.dismiss();
+                dismissPopup();
                 break;
             case R.id.tv_zuixin_jinru:
                 showToast("最新加入");
-                popupWindow.dismiss();
+                dismissPopup();
                 break;
 
         }
 
+    }
+
+    private void dismissPopup() {
+        popupWindow.dismiss();
+        ibShopCart.setBackgroundResource(R.drawable.actionbar_navigation_menu);
     }
 
 

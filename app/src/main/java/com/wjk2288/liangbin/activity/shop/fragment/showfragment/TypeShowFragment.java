@@ -125,7 +125,6 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
-
     }
 
     private void initListener() {

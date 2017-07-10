@@ -74,60 +74,7 @@ public interface NetServiceApi {
     );
 
 
-    //家具
-
-
-    //文具
-
-
-    //数码
-
-
-    //玩乐
-
-
-    //厨卫
-
-
-    //美食
-
-
-    //男装
-
-
-    //女装
-
-
-    //童装
-
-
-    //鞋包
-
-
-    //配饰
-
-
-    //美护
-
-
-    //户外
-
-
-    //植物
-
-
-    //图书
-
-
-    //礼物
-
-
-    //推荐
-
-
-    //艺术
-
-
+    //达人页面
     @GET("masterList")
     Observable<DaRenBean> getDaRen(@Query("app_key") String appkey,
                                    @Query("count") int count,
