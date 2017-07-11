@@ -179,14 +179,10 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
                 TypeShowBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
                 String goods_id = itemsBean.getGoods_id();
                 Intent intent = new Intent(context, GoodsDetailsActivity.class);
-                intent.putExtra("goodsId",goods_id);
+                intent.putExtra("goodsId", goods_id);
                 startActivity(intent);
             }
         });
-
-
-
-
 
 
     }

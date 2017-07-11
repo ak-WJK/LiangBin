@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".activity.activity.GuideActivity" />
         <activity android:name=".activity.activity.AnimationActivity" />
-        <activity android:name=".activity.activity.TypeShowActivity" />
         <activity android:name=".activity.shop.activity.GoodsDetailsActivity" />
         <activity android:name=".activity.shop.activity.BrandDetailsActivity" />
         <activity android:name=".activity.shop.activity.HomeDetailsActivity"></activity>

@@ -1,4 +1,4 @@
-package com.wjk2288.liangbin.activity.shop.bean;
+package com.wjk2288.liangbin.activity.daren.bean;
 
 import java.util.List;
 

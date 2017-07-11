@@ -10,9 +10,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
-import com.wjk2288.liangbin.activity.shop.adapter.DarenAdapter;
+import com.wjk2288.liangbin.activity.daren.adapter.DarenAdapter;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
-import com.wjk2288.liangbin.activity.shop.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.daren.bean.DaRenBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
 import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;

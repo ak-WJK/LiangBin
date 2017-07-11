@@ -22,6 +22,10 @@ public class NetUtils {
     public static final String BRAND_DETAILS_BASE_URL = "http://mobile.iliangcang.com/brand/";
     public static final String BRAND_DETATILS_URL = "brandShopList?app_key=Android&brand_id=14&count=20&page=1&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
 
+    //品牌页面详情H5
+    public static final String BRAND_DETAILS_BASE_URL_PAGER = "http://mobile.iliangcang.com/goods/";
+    public static final String BRAND_DETATILS_URL_PAGER = "goodsDetail?app_key=Android&goods_id=34230&sig=430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768&v=1.0";
+
 
     //专题页面
     public static final String SPECIAL_BASE_URL = "http://mobile.iliangcang.com/goods/";

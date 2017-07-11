@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeDetailsBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
@@ -52,6 +53,15 @@ public class GoodsDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         goodsId = intent.getStringExtra("goodsId");
+
+
+        BrandDetailsPagerBean brandDetailsPagerBean = (BrandDetailsPagerBean) getIntent().getSerializableExtra("bean");
+
+        if (brandDetailsPagerBean != null) {
+            String goods_url = brandDetailsPagerBean.getData().getItems().getGoods_url();
+            initWebView(goods_url);
+        }
+
 
         requestData();
 

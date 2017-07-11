@@ -1,5 +1,6 @@
 package com.wjk2288.liangbin.activity.shop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.adapter.showadapter.BrandDetailsAdapter;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
@@ -119,6 +121,8 @@ public class BrandDetailsActivity extends AppCompatActivity {
                         //设置下标越界异常抛出防止崩溃
                         try {
                             brand_desc = itemsBeanList.get(position).getBrand_info().getBrand_desc();
+
+
                         } catch (IndexOutOfBoundsException e) {
                             e.printStackTrace();
                         }
@@ -137,6 +141,24 @@ public class BrandDetailsActivity extends AppCompatActivity {
 
                         break;
                 }
+            }
+        });
+
+
+        //设置item的点击事件
+        adapter.setOnItemClickListener(new BrandDetailsAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                String goods_id = itemsBeanList.get(position).getGoods_id();
+                LogUtils.e("TAG", "googs_id===" + goods_id);
+
+//
+//                String goods_url = itemsBeanList.get(position).getGoods_url();
+////                LogUtils.e("TAG", "url----" + goods_url);
+                requestDetailsNet(goods_id);
+
+
             }
         });
 
@@ -171,6 +193,44 @@ public class BrandDetailsActivity extends AppCompatActivity {
                         brandId,
                         20,
                         1,
+                        "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768",
+                        "1.0")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    private void requestDetailsNet(String id) {
+        onUnsebscriber();
+        NetServiceApi serviceApi = RequestNet.getIncetance().getRetrofit(NetUtils.BRAND_DETAILS_BASE_URL_PAGER).create(NetServiceApi.class);
+
+        Observer<BrandDetailsPagerBean> observer = new Observer<BrandDetailsPagerBean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogUtils.e("TAG", "onError===" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(BrandDetailsPagerBean brandDetailsPagerBean) {
+                String goods_url = brandDetailsPagerBean.getData().getItems().getGoods_url();
+                Intent intent = new Intent(BrandDetailsActivity.this, GoodsDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("bean",  brandDetailsPagerBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+
+            }
+        };
+
+        subscription = serviceApi
+                .getBrandDetailsPager("Android",
+                        id,
                         "430BD99E6C913B8B8C3ED109737ECF15%7C830952120106768",
                         "1.0")
                 .subscribeOn(Schedulers.newThread())

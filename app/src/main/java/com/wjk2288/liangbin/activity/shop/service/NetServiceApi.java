@@ -1,13 +1,14 @@
 package com.wjk2288.liangbin.activity.shop.service;
 
-import com.wjk2288.liangbin.activity.shop.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.daren.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeDetailsBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.TypeShowBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.SpecialBean;
-import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
-import com.wjk2288.liangbin.activity.shop.bean.details.TypeShowBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -34,7 +35,7 @@ public interface NetServiceApi {
                                    @Query("sig") String sig,
                                    @Query("v") String v);
 
-    //品牌详情
+    //品牌展示
     @GET("brandShopList")
     Observable<BrandDetailsBean> getBrandDetails(@Query("app_key") String appkey,
                                                  @Query("brand_id") int brandId,
@@ -42,6 +43,13 @@ public interface NetServiceApi {
                                                  @Query("page") int page,
                                                  @Query("sig") String sig,
                                                  @Query("v") String v);
+
+    //品牌详情
+    @GET("goodsDetail")
+    Observable<BrandDetailsPagerBean> getBrandDetailsPager(@Query("app_key") String appkey,
+                                                           @Query("goods_id") String brandId,
+                                                           @Query("sig") String sig,
+                                                           @Query("v") String v);
 
 
     //专题

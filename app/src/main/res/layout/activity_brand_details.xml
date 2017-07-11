@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="170dp"
         android:background="@drawable/brand_bg">
 
