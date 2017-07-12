@@ -135,8 +135,10 @@ public class BrandDetailsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.tv_chanpin:
+
                         tvBrandGushi.setVisibility(View.GONE);
                         recyclerview.setVisibility(View.VISIBLE);
+
                         adapter.refreshData(itemsBeanList);
 
                         break;
@@ -220,10 +222,9 @@ public class BrandDetailsActivity extends AppCompatActivity {
                 String goods_url = brandDetailsPagerBean.getData().getItems().getGoods_url();
                 Intent intent = new Intent(BrandDetailsActivity.this, GoodsDetailsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("bean",  brandDetailsPagerBean);
+                bundle.putSerializable("bean", brandDetailsPagerBean);
                 intent.putExtras(bundle);
                 startActivity(intent);
-
 
             }
         };

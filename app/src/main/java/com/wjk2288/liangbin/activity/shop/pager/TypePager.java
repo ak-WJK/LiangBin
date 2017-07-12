@@ -110,7 +110,6 @@ public class TypePager extends BasePager {
                     fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 
 
-
                     /*
                     *
                     *

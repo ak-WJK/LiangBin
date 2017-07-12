@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
-import com.wjk2288.liangbin.activity.daren.bean.DaRenBean;
+import com.wjk2288.liangbin.activity.daren.bean.DaRenShowBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,9 @@ import butterknife.ButterKnife;
 public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHodler> {
 
 
-    private List<DaRenBean.DataBean.ItemsBean> datas = new ArrayList<>();
+    private List<DaRenShowBean.DataBean.ItemsBean> datas = new ArrayList<>();
     private Context context;
+    private onItemClickListener listener;
 
     public DarenAdapter(Context context) {
         this.context = context;
@@ -41,8 +42,18 @@ public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHod
     }
 
     @Override
-    public void onBindViewHolder(DarenViewHodler holder, int position) {
+    public void onBindViewHolder(DarenViewHodler holder, final int position) {
         holder.setData(datas, position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(position);
+                }
+            }
+        });
+
 
     }
 
@@ -68,13 +79,13 @@ public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHod
             ButterKnife.bind(this, itemView);
         }
 
-        public void setData(List<DaRenBean.DataBean.ItemsBean> datas, int position) {
+        public void setData(List<DaRenShowBean.DataBean.ItemsBean> datas, int position) {
             if (datas != null && datas.size() >= 0) {
-                DaRenBean.DataBean.ItemsBean itemsBean = datas.get(position);
+                DaRenShowBean.DataBean.ItemsBean itemsBean = datas.get(position);
 
                 String username = itemsBean.getUsername();
                 String duty = itemsBean.getDuty();
-                DaRenBean.DataBean.ItemsBean.UserImagesBean user_images = itemsBean.getUser_images();
+                DaRenShowBean.DataBean.ItemsBean.UserImagesBean user_images = itemsBean.getUser_images();
                 String orig = user_images.getOrig();
 
                 tvDarenName.setText(username);
@@ -92,7 +103,7 @@ public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHod
     }
 
 
-    public void refreshData(List<DaRenBean.DataBean.ItemsBean> itemsBeanList, int pager) {
+    public void refreshData(List<DaRenShowBean.DataBean.ItemsBean> itemsBeanList, int pager) {
         if (itemsBeanList != null && itemsBeanList.size() >= 0) {
             if (pager == 1) {
                 datas.clear();
@@ -107,6 +118,15 @@ public class DarenAdapter extends RecyclerView.Adapter<DarenAdapter.DarenViewHod
         }
 
 
+    }
+
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+
+        this.listener = listener;
     }
 
 

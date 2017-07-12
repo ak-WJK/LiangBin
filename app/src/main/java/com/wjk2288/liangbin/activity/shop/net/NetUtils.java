@@ -58,5 +58,12 @@ public class NetUtils {
     public static final String DAREN_BASE_URL = "http://mobile.iliangcang.com/user/";
     public static final String DAREN_URL = "masterList?app_key=Android&count=18&page=1&sig=BF287AF953103F390674E73DDA18CFD8|639843030233268&v=1.0";
 
+    //达人详情
+    public static final String DAREN_BASE_DETAILS_URL = "http://mobile.iliangcang.com/user/";
+    public static final String DAREN_DETAILS_URL = "masterFollowed?app_key=Android&count=12&owner_id=999998864&page=1&sig=BF287AF953103F390674E73DDA18CFD8%7C639843030233268&v=1.0";
+
+    //达人人气
+    public static final String DAREN_RENQI_BASE_DETAILS_URL = "http://mobile.iliangcang.com/user/";
+
 
 }

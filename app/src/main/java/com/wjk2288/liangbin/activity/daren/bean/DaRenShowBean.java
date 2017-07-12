@@ -1,12 +1,13 @@
 package com.wjk2288.liangbin.activity.daren.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/9.
  */
 
-public class DaRenBean {
+public class DaRenShowBean implements Serializable{
 
 
     /**
@@ -109,7 +110,7 @@ public class DaRenBean {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * has_more : true
          * num_items : 177
@@ -144,7 +145,7 @@ public class DaRenBean {
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean  implements Serializable{
             /**
              * uid : 12596
              * username : 山本耀司
@@ -209,7 +210,7 @@ public class DaRenBean {
                 this.user_images = user_images;
             }
 
-            public static class UserImagesBean {
+            public static class UserImagesBean implements Serializable{
                 /**
                  * self_img : 1
                  * orig : http://imgs-qn.iliangcang.com/ware/userhead/orig/2/12/12596.jpg?t=1499682504

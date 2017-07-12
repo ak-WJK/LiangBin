@@ -24,7 +24,8 @@
         <activity android:name=".activity.activity.AnimationActivity" />
         <activity android:name=".activity.shop.activity.GoodsDetailsActivity" />
         <activity android:name=".activity.shop.activity.BrandDetailsActivity" />
-        <activity android:name=".activity.shop.activity.HomeDetailsActivity"></activity>
+        <activity android:name=".activity.shop.activity.HomeDetailsActivity" />
+        <activity android:name=".activity.daren.activity.DarenDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -35,7 +35,6 @@ public class RequestNet {
         })
                 .setLevel(HttpLoggingInterceptor.Level.BODY);
 
-
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .readTimeout(10, TimeUnit.SECONDS)

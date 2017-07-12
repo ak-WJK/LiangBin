@@ -1,5 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,9 +12,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.daren.activity.DarenDetailsActivity;
 import com.wjk2288.liangbin.activity.daren.adapter.DarenAdapter;
+import com.wjk2288.liangbin.activity.daren.bean.DaRenShowBean;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
-import com.wjk2288.liangbin.activity.daren.bean.DaRenBean;
 import com.wjk2288.liangbin.activity.shop.net.NetUtils;
 import com.wjk2288.liangbin.activity.shop.net.RequestNet;
 import com.wjk2288.liangbin.activity.shop.service.NetServiceApi;
@@ -54,6 +57,7 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
     private TextView mTv_zuixin_tuijian;
     private TextView mTv_zuixin_jinru;
     private PopupWindow popupWindow;
+    private List<DaRenShowBean.DataBean.ItemsBean> itemsBeanList;
 
 
     @Override
@@ -100,6 +104,26 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
 
         //联网请求数据
         requestData();
+
+        //设置监听
+        initListener();
+
+
+    }
+
+    private void initListener() {
+        adapter.setOnItemClickListener(new DarenAdapter.onItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                DaRenShowBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+                Intent intent = new Intent(context, DarenDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("itemsBean", itemsBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+            }
+        });
 
 
     }
@@ -179,7 +203,7 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
 
     private void requestData() {
         onUnsubscriber();
-        Observer<DaRenBean> observer = new Observer<DaRenBean>() {
+        Observer<DaRenShowBean> observer = new Observer<DaRenShowBean>() {
             @Override
             public void onCompleted() {
 
@@ -192,9 +216,9 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
             }
 
             @Override
-            public void onNext(DaRenBean daRenBean) {
+            public void onNext(DaRenShowBean daRenBean) {
 
-                List<DaRenBean.DataBean.ItemsBean> itemsBeanList = daRenBean.getData().getItems();
+                itemsBeanList = daRenBean.getData().getItems();
 
                 adapter.refreshData(itemsBeanList, pager);
 

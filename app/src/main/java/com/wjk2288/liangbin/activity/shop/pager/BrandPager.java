@@ -129,8 +129,8 @@ public class BrandPager extends BasePager {
 
                 Intent intent = new Intent(context, BrandDetailsActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("bundle",  itemsBean);
-                intent.putExtra("position" , position);
+                bundle.putSerializable("bundle", itemsBean);
+                intent.putExtra("position", position);
                 intent.putExtras(bundle);
 //                intent.putExtra("brandId", brand_id);
                 context.startActivity(intent);
