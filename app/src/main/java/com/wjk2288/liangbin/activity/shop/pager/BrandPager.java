@@ -123,7 +123,7 @@ public class BrandPager extends BasePager {
 
         adapter.setOnItemClickListener(new BrandAdapter.onItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, List<BrandBean.DataBean.ItemsBean> itemsBeanList) {
 
                 BrandBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
 
@@ -134,9 +134,10 @@ public class BrandPager extends BasePager {
                 intent.putExtras(bundle);
 //                intent.putExtra("brandId", brand_id);
                 context.startActivity(intent);
-
             }
+//
         });
+
 
 
     }
@@ -172,8 +173,6 @@ public class BrandPager extends BasePager {
 
                 itemsBeanList = brandBean.getData().getItems();
 
-
-                //--------------
                 adapter.refreshData(itemsBeanList, pager);
 
             }

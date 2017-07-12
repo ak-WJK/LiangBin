@@ -3,13 +3,13 @@ package com.wjk2288.liangbin.activity.shop.adapter.typepageradapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
+import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +36,7 @@ public class BrandAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        LogUtils.e("TAG", "itesize 2222 ==" + itemsBeanList.size());
         return itemsBeanList == null ? 0 : itemsBeanList.size();
     }
 
@@ -64,7 +65,7 @@ public class BrandAdapter extends BaseAdapter {
         }
 
 
-        BrandBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+        final BrandBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
 
         viewHolder.tvBrandName.setText(itemsBean.getBrand_name());
         Picasso.with(context)
@@ -76,7 +77,7 @@ public class BrandAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(position);
+                    listener.onItemClick(position, itemsBeanList);
                 }
 
             }
@@ -101,6 +102,8 @@ public class BrandAdapter extends BaseAdapter {
                 itemsBeanList.addAll(beanList);
                 notifyDataSetChanged();
 
+                LogUtils.e("TAG", "itesize==" + itemsBeanList.size());
+
             }
 
 
@@ -113,8 +116,7 @@ public class BrandAdapter extends BaseAdapter {
         ImageView ivBrandIcon;
         @Bind(R.id.tv_brand_name)
         TextView tvBrandName;
-        @Bind(R.id.ib_brand_getinto)
-        ImageButton ibBrandGetinto;
+
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
@@ -124,7 +126,7 @@ public class BrandAdapter extends BaseAdapter {
 
 
     public interface onItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, List<BrandBean.DataBean.ItemsBean> itemsBeanList);
     }
 
     public void setOnItemClickListener(onItemClickListener listener) {
