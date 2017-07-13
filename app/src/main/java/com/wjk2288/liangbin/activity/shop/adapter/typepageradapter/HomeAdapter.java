@@ -13,6 +13,8 @@ import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.activity.HomeDetailsActivity;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
 import com.wjk2288.liangbin.activity.utils.LogUtils;
+import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +82,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
                 viewHolder = new TypeFourViewHodler(LayoutInflater.from(context).inflate(R.layout.pager_home_item_typefour, parent, false));
                 break;
             case TYPE_SIX:
-                viewHolder = new TypeSixViewHodler(LayoutInflater.from(context).inflate(R.layout.pager_home_item_typeone, parent, false));
+                viewHolder = new TypeSixViewHodler(LayoutInflater.from(context).inflate(R.layout.pager_home_item_typesix, parent, false));
                 break;
 
         }
@@ -368,24 +370,36 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
     class TypeSixViewHodler extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_home_oneicon)
-        ImageView imageView;
+        @Bind(R.id.iv_home_sixicon)
+        ImageView ivHomeSixicon;
+        @Bind(R.id.banner)
+        Banner banner;
+
 
         public TypeSixViewHodler(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-
         }
 
         public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
-            String pic_url = listBeanX.getList().get(position).getPic_url();
 
-            Glide.with(context)
-                    .load(pic_url)
-                    .into(imageView);
+            ArrayList<String> images = new ArrayList<>();
+            String pic_url = listBeanX.getList().get(0).getPic_url();
+            String pic_url1 = listBeanX.getPic_url();
+            images.add(pic_url);
+            images.add(pic_url1);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
+
+            //设置图片加载器
+            banner.setImageLoader(new GlideImageLoader());
+            //设置图片集合
+            banner.setImages(images);
+            //banner设置方法全部调用完毕时最后调用
+            banner.start();
+
+
+            ivHomeSixicon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -401,6 +415,21 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
 
         }
+
+        public class GlideImageLoader extends ImageLoader {
+
+
+            @Override
+            public void displayImage(Context context, Object path, ImageView imageView) {
+
+                Glide.with(context).load(path).into(imageView);
+
+
+            }
+
+        }
+
+
     }
 
 
