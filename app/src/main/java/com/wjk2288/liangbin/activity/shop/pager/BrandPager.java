@@ -139,7 +139,6 @@ public class BrandPager extends BasePager {
         });
 
 
-
     }
 
     /**

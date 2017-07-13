@@ -36,7 +36,7 @@ public class BrandAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        LogUtils.e("TAG", "itesize 2222 ==" + itemsBeanList.size());
+
         return itemsBeanList == null ? 0 : itemsBeanList.size();
     }
 

@@ -4,6 +4,7 @@ import com.wjk2288.liangbin.activity.daren.bean.DaRenDetailsBean;
 import com.wjk2288.liangbin.activity.daren.bean.DaRenShowBean;
 import com.wjk2288.liangbin.activity.daren.bean.renqibean.FenSiBean;
 import com.wjk2288.liangbin.activity.daren.bean.renqibean.TuiJianBean;
+import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
@@ -148,6 +149,20 @@ public interface NetServiceApi {
                                          @Query("count") int count,
                                          @Query("owner_id") String uId,
                                          @Query("page") int page,
+                                         @Query("sig") String sig,
+                                         @Query("v") String v
+
+    );
+
+
+//    http://mobile.iliangcang.com/topic/magazineList?app_key=Android&author_id=1
+// &sig=2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868&v=1.0
+
+
+    //杂志页面
+    @GET("magazineList")
+    Observable<MagazineBean> getMagazine(@Query("app_key") String appkey,
+                                         @Query("author_id") int authorId,
                                          @Query("sig") String sig,
                                          @Query("v") String v
 

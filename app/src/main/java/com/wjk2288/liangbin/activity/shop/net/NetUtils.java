@@ -65,5 +65,8 @@ public class NetUtils {
     //达人人气
     public static final String DAREN_RENQI_BASE_DETAILS_URL = "http://mobile.iliangcang.com/user/";
 
+    //达人人气
+    public static final String MAGAZINE_BASE_URL = "http://mobile.iliangcang.com/topic/";
+
 
 }
