@@ -19,9 +19,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:inAnimation="@android:anim/slide_in_left"
-            android:onClick="next"
             android:outAnimation="@android:anim/slide_out_right"
-            android:padding="3dp"
+            android:padding="5dp"
             android:textAlignment="center">
 
         </TextSwitcher>

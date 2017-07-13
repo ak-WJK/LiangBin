@@ -9,5 +9,6 @@
     <color name="textwhitecolor">#FFFFFF</color>
     <color name="textwhitecolortuijian">#d9d9d9</color>
     <color name="darenbackcolor">#262626</color>
+    <color name="textswitchercolor">#ffaa01</color>
 
 </resources>

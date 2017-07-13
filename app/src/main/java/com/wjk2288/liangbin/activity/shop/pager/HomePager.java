@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -39,6 +41,8 @@ public class HomePager extends BasePager {
     RecyclerView recyclerview;
     @Bind(refresh)
     MaterialRefreshLayout materialRefreshLayout;
+    @Bind(R.id.ib_top)
+    ImageButton ibTop;
 
     private HomeAdapter adapter;
 
@@ -172,4 +176,10 @@ public class HomePager extends BasePager {
     }
 
 
+    @OnClick(R.id.ib_top)
+    public void onViewClicked() {
+        recyclerview.smoothScrollToPosition(0);
+
+
+    }
 }

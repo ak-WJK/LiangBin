@@ -96,6 +96,7 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
 
         public void setData(List<SpecialBean.DataBean.ItemsBean> itemsBeanList, int position) {
             SpecialBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+            ivSpecialIcon.setImageAlpha(99);
             tvSpecialIconcontent.setText(itemsBean.getTopic_name());
             Glide.with(context)
                     .load(itemsBean.getCover_img_new())

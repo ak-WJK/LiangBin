@@ -1,4 +1,4 @@
-include ':app', ':recyclerviewheader'
+include ':app', ':recyclerviewheader', ':testswitch'
 
 include ':myFragmentAnimation'
 

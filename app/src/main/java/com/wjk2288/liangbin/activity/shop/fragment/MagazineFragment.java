@@ -1,19 +1,23 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.annotation.RequiresApi;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.magazine.adapter.MagazineAdapter;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
-import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +39,7 @@ import okhttp3.Response;
  * Created by Administrator on 2017/7/6.
  */
 
-public class MagazineFragment extends BaseFragment {
+public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewFactory {
 
 
     @Bind(R.id.textSwitcher)
@@ -49,9 +53,19 @@ public class MagazineFragment extends BaseFragment {
 
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
+
             adapter.refreshData(mgzBeanList);
+
+            String time = mgzBeanList.get(0).getMonthInfo();
+            monthInfo = time.substring(5);
+//            LogUtils.e("TAG", "monthinfo" + monthInfo);
+            setTextSwitcher(monthInfo);
+
+            initListener();
+
         }
     };
+    private String monthInfo;
 
 
     @Override
@@ -61,8 +75,12 @@ public class MagazineFragment extends BaseFragment {
         ButterKnife.bind(this, view);
 
         adapter = new MagazineAdapter(context);
-        recyclerview.setLayoutManager(new GridLayoutManager(context, 1));
+        recyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         recyclerview.setAdapter(adapter);
+
+        textSwitcher.setFactory(this);
+        textSwitcher.setInAnimation(AnimationUtils.loadAnimation(context, R.anim.textswitcher_slide_in_bottom));
+        textSwitcher.setOutAnimation(AnimationUtils.loadAnimation(context, R.anim.textswitcher_slide_in_top));
 
 
         return view;
@@ -81,7 +99,7 @@ public class MagazineFragment extends BaseFragment {
                 new OkHttpClient().newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        LogUtils.e("TAG", "onFailure==" + e.getMessage());
+//                        LogUtils.e("TAG", "onFailure==" + e.getMessage());
                     }
 
                     @Override
@@ -98,39 +116,51 @@ public class MagazineFragment extends BaseFragment {
         }).start();
 
 
-//        onUnsubscriber();
-//        Observer<MagazineBean> observer = new Observer<MagazineBean>() {
-//            @Override
-//            public void onCompleted() {
 //
-//            }
-//
-//            @Override
-////            public void onError(Throwable e) {
-//                LogUtils.e("TAG", "onError==" + e.getMessage());
-//
-//            }
-//
-//            @Override
-//            public void onNext(MagazineBean magazineBean) {
-//                MagazineBean.DataBean.ItemBean itemBean = magazineBean.getData().getItems();
-//
-//                LogUtils.e("TAG", "itemBean==" + itemBean.toString());
-//
-//
-//                adapter.refreshData(itemBean);
-//
-//
-//            }
-//        };
-//
-//        NetServiceApi serviceApi = RequestNet.getIncetance().getRetrofit(NetUtils.MAGAZINE_BASE_URL).create(NetServiceApi.class);
-//        subscription = serviceApi.getMagazine("Android", 1, "2FA0974FFF1BC3DFA562AA63C8B5A84F%7C118265010131868", "1.0")
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(observer);
+    }
 
-//
+    private int position = 0;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void initListener() {
+
+        recyclerview.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                //得到布局管理
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                //得到第一个item的位置
+                int itemPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+//                LogUtils.e("TAG", "itemposition55 -- " + itemPosition);
+
+                //判断0位置的item是否在顶端
+//                boolean b = recyclerView.canScrollVertically(-1);
+//                LogUtils.e("TAG", "b==" + b);
+
+                if (position != itemPosition) {
+
+                    String time = mgzBeanList.get(itemPosition).getMonthInfo();
+                    monthInfo = time.substring(5);
+                    setTextSwitcher(monthInfo);
+                }
+                position = itemPosition;
+
+
+            }
+        });
+
+
+    }
+
+    public void setTextSwitcher(String monthInfo) {
+        textSwitcher.setText(monthInfo);
     }
 
     private void analysisJson(String json) {
@@ -162,7 +192,6 @@ public class MagazineFragment extends BaseFragment {
 
                     String addtime = jsonObjectItem.optString("addtime");
                     magazineBean.setAddtime(addtime);
-
 
 
                     String cat_name = jsonObjectItem.optString("cat_name");
@@ -201,13 +230,21 @@ public class MagazineFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.textSwitcher, R.id.tv_magazine})
+    @OnClick({R.id.tv_magazine})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.textSwitcher:
-                break;
             case R.id.tv_magazine:
+
                 break;
         }
+    }
+
+    @Override
+    public View makeView() {
+        TextView tv = new TextView(context);
+        tv.setTextSize(11);
+        tv.setTextColor(Color.CYAN);
+        tv.setText(monthInfo);
+        return tv;
     }
 }

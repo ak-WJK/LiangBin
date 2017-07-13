@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +27,11 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
     private Context context;
 
     private ArrayList<MagazineBean> datas = new ArrayList<>();
-//    private onTimeChangedClickListener listener;
+    private onTimeChangedClickListener listener;
+    boolean delayedTime = true;
+    private String monthInfo;
+
+    private int position;
 
     public MagazineAdapter(Context context) {
 
@@ -40,8 +45,19 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
     }
 
     @Override
-    public void onBindViewHolder(MagazineViewHodler holder, int position) {
+    public void onBindViewHolder(MagazineViewHodler holder, final int position) {
+        this.position = position;
         holder.setData(position, datas);
+        itemAnimation(holder.itemView, position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onTimeClick(position);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -71,6 +87,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
         public void setData(int position, ArrayList<MagazineBean> datas) {
 
             String cover_img_new = datas.get(position).getCover_img_new();
+            ivMagazineIcon.setImageAlpha(99);
             Glide.with(context).load(cover_img_new).into(ivMagazineIcon);
 
             String topic_name = datas.get(position).getTopic_name();
@@ -79,7 +96,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
             String cat_name = datas.get(position).getCat_name();
             tvMagazineType.setText("--- " + cat_name + " ---");
 
-            String monthInfo = datas.get(position).getMonthInfo();
+            monthInfo = datas.get(position).getMonthInfo();
             String date = monthInfo.substring(5);
 
 
@@ -95,8 +112,6 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
                 } else {
                     tvMagazineTime.setVisibility(View.VISIBLE);
                 }
-
-
             }
 
             tvMagazineTime.setText("---  " + date + "  ---");
@@ -117,16 +132,38 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
     }
 
 
-//    public interface onTimeChangedClickListener {
-//        void onTimeClick(int position, String date);
-//    }
-//
-//
-//    public void setOnTimeChangedClickListener(onTimeChangedClickListener listener) {
-//
-//        this.listener = listener;
-//    }
+    //动画效果
 
+    public void itemAnimation(View itemView, int position) {
+
+        itemView.setTranslationY(250);//动画的距离
+        itemView.setAlpha(0f);//设置透明
+
+        itemView.animate()
+                .translationY(0)
+                .alpha(1f)
+                .setStartDelay(delayedTime ? 40 * (position) : 0)
+                .setInterpolator(new DecelerateInterpolator(0.6f))
+                .setDuration(200)
+                .start();
+
+
+    }
+
+
+    public interface onTimeChangedClickListener {
+        void onTimeClick(int position);
+    }
+
+
+    public void setOnTimeChangedClickListener(onTimeChangedClickListener listener) {
+
+        this.listener = listener;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 
 }
 
