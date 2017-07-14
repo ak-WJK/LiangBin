@@ -13,7 +13,9 @@ public abstract class BasePager {
 
     public BasePager(Context context) {
         this.context = context;
+
         rootView = initView();
+
     }
 
     public abstract View initView();

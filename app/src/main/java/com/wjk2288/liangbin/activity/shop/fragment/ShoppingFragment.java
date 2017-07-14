@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static android.view.View.Z;
+
 /**
  * Created by Administrator on 2017/7/6.
  */
@@ -39,7 +41,6 @@ public class ShoppingFragment extends BaseFragment {
     ViewPager viewpager;
 
     String[] titles = {"分类", "品牌", "首页", "专题", "礼物"};
-    private TextView textView;
     private ArrayList<BasePager> pagers;
 
 
@@ -99,6 +100,10 @@ public class ShoppingFragment extends BaseFragment {
             BasePager basePager = pagers.get(position);
             View rootView = basePager.initView();
             basePager.initData();
+            /*
+            *一定要在各个pager中初始化initView,要然让报
+            * lang.IllegalArgumentException: Cannot add a null child view to a ViewGroup
+            * */
             container.addView(rootView);
 
             return rootView;

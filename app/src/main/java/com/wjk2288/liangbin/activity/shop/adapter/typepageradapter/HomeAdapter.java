@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.shop.activity.HomeDetailsActivity;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
-import com.wjk2288.liangbin.activity.utils.LogUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -283,7 +282,7 @@ public class HomeAdapter extends RecyclerView.Adapter {
         public void setData(final HomeBean.DataBean.ItemsBean.ListBeanX listBeanX, final int position) {
 
             String pic_url1 = listBeanX.getOne().getPic_url();
-            LogUtils.e("TAG", "piccc == " + pic_url1);
+
             Glide.with(context)
                     .load(pic_url1)
                     .into(imageViewone);

@@ -1,5 +1,7 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.magazine.activity.MagazineTypeAndAutherActivity;
 import com.wjk2288.liangbin.activity.magazine.adapter.MagazineAdapter;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
@@ -66,7 +69,6 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
         }
     };
     private String monthInfo;
-
 
     @Override
     public View initView() {
@@ -230,11 +232,15 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
         ButterKnife.unbind(this);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
     @OnClick({R.id.tv_magazine})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_magazine:
-
+                Intent intent = new Intent(context, MagazineTypeAndAutherActivity.class);
+                context.startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.out_to_top, R.anim.in_from_bottom);
                 break;
         }
     }

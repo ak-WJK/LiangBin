@@ -69,4 +69,8 @@ public class NetUtils {
     public static final String MAGAZINE_BASE_URL = "http://mobile.iliangcang.com/topic/";
 
 
+    //杂志作者页面
+    public static final String MAGAZINE_AUTHER_URL = "http://mobile.iliangcang.com/topic/";
+
+
 }

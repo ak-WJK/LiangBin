@@ -4,6 +4,7 @@ import com.wjk2288.liangbin.activity.daren.bean.DaRenDetailsBean;
 import com.wjk2288.liangbin.activity.daren.bean.DaRenShowBean;
 import com.wjk2288.liangbin.activity.daren.bean.renqibean.FenSiBean;
 import com.wjk2288.liangbin.activity.daren.bean.renqibean.TuiJianBean;
+import com.wjk2288.liangbin.activity.magazine.bean.MagazineAutherBean;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
@@ -165,6 +166,15 @@ public interface NetServiceApi {
                                          @Query("author_id") int authorId,
                                          @Query("sig") String sig,
                                          @Query("v") String v
+
+    );
+
+
+    //杂志页面
+    @GET("magazineAuthorList")
+    Observable<MagazineAutherBean> getMagazineAuther(@Query("app_key") String appkey,
+                                                     @Query("sig") String sig,
+                                                     @Query("v") String v
 
     );
 

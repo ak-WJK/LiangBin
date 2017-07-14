@@ -87,7 +87,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
         public void setData(int position, ArrayList<MagazineBean> datas) {
 
             String cover_img_new = datas.get(position).getCover_img_new();
-            ivMagazineIcon.setImageAlpha(99);
+            ivMagazineIcon.setImageAlpha(100);
             Glide.with(context).load(cover_img_new).into(ivMagazineIcon);
 
             String topic_name = datas.get(position).getTopic_name();
@@ -136,14 +136,14 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
 
     public void itemAnimation(View itemView, int position) {
 
-        itemView.setTranslationY(250);//动画的距离
+        itemView.setTranslationY(300);//动画的距离
         itemView.setAlpha(0f);//设置透明
 
         itemView.animate()
                 .translationY(0)
                 .alpha(1f)
                 .setStartDelay(delayedTime ? 40 * (position) : 0)
-                .setInterpolator(new DecelerateInterpolator(0.6f))
+                .setInterpolator(new DecelerateInterpolator(0.7f))
                 .setDuration(200)
                 .start();
 

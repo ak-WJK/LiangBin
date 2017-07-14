@@ -25,7 +25,8 @@
         <activity android:name=".activity.shop.activity.GoodsDetailsActivity" />
         <activity android:name=".activity.shop.activity.BrandDetailsActivity" />
         <activity android:name=".activity.shop.activity.HomeDetailsActivity" />
-        <activity android:name=".activity.daren.activity.DarenDetailsActivity"></activity>
+        <activity android:name=".activity.daren.activity.DarenDetailsActivity" />
+        <activity android:name=".activity.magazine.activity.MagazineTypeAndAutherActivity"></activity>
     </application>
 
 </manifest>

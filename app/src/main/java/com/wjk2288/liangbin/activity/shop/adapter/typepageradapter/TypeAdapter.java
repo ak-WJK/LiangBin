@@ -83,7 +83,6 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.TypeViewHodler
                     .bitmapTransform(new RoundedCornersTransformation(context, 15, 5))
                     .into(ivTypeIcon);
 
-
         }
     }
 
