@@ -6,6 +6,7 @@ import com.wjk2288.liangbin.activity.daren.bean.renqibean.FenSiBean;
 import com.wjk2288.liangbin.activity.daren.bean.renqibean.TuiJianBean;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineAutherBean;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
+import com.wjk2288.liangbin.activity.magazine.bean.MagazineTypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
@@ -170,13 +171,28 @@ public interface NetServiceApi {
     );
 
 
-    //杂志页面
+    //杂志作者页面
     @GET("magazineAuthorList")
     Observable<MagazineAutherBean> getMagazineAuther(@Query("app_key") String appkey,
                                                      @Query("sig") String sig,
                                                      @Query("v") String v
 
     );
+
+    //杂志类型页面
+    @GET("magazineCatList")
+    Observable<MagazineTypeBean> getMagazineType(@Query("app_key") String appkey,
+                                                 @Query("sig") String sig,
+                                                 @Query("v") String v
+
+    );
+
+    //不得姐页面
+//    @GET("{page}")
+//    Observable<MagazineTypeBean> getSharedRecommend(@Path("page") String page
+//                                                    @Path
+//
+//    );
 
 
 }

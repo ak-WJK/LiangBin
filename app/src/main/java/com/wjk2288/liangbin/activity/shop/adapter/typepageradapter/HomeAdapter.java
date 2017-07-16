@@ -385,9 +385,11 @@ public class HomeAdapter extends RecyclerView.Adapter {
 
             ArrayList<String> images = new ArrayList<>();
             String pic_url = listBeanX.getList().get(0).getPic_url();
+            String pic_url2 = listBeanX.getList().get(1).getPic_url();
             String pic_url1 = listBeanX.getPic_url();
             images.add(pic_url);
             images.add(pic_url1);
+            images.add(pic_url2);
 
 
             //设置图片加载器

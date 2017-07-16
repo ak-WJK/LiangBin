@@ -72,5 +72,14 @@ public class NetUtils {
     //杂志作者页面
     public static final String MAGAZINE_AUTHER_URL = "http://mobile.iliangcang.com/topic/";
 
+    //杂志的分类页面
+    public static final String MAGAZINE_TYPE_URL = "http://mobile.iliangcang.com/topic/";
+
+    public static final String TYPEURL = "magazineCatList?app_key=Android&sig=AFEC57DDE58BC9A1810C8E3561650110%7C606202010493468&v=1.0";
+
+
+    //百思不得姐
+    public static final String BUDEJIE = "http://s.budejie.com/topic/list/jingxuan/";
+
 
 }

@@ -134,13 +134,21 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
         bindViews(popupView);
 
         //设置popup在弹出后所有焦点都是popup处理
+        popupWindow.setFocusable(true);
+
+
+        popupWindow.setOutsideTouchable(false);
+
+//        popupWindow.setTouchable(true);
 //        popupWindow.setFocusable(true);
 
+
         //设置外部可点击的
-        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setOutsideTouchable(false);
+
 
 //        popupWindow.showAtLocation(ibShopCart, Gravity.BOTTOM, 0, 0);
-        popupWindow.showAsDropDown(ibShopCart);
+        popupWindow.showAsDropDown(ibShopCart, 0, 25);
 
         //设置popup的dismiss的监听实现按钮的变化
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {

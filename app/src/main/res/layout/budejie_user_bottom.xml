@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/shenhe_ding_pic"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="6sp"
+            tools:text="点赞" />
+
+        <TextView
+            android:id="@+id/tv_cai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/shenhe_cai_pic_night"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="6sp"
+            tools:text="踩" />
+
+        <TextView
+            android:id="@+id/tv_shared"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/video_pause_forword"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="6sp"
+            tools:text="点赞" />
+
+        <TextView
+            android:id="@+id/tv_pinglun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/commend_black"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="6sp"
+            tools:text="点赞" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#e9e9e9"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pinglun_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="#326881"
+            android:textSize="5sp"
+            tools:text="用户名称:" />
+
+        <TextView
+            android:id="@+id/pinglun_user_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0e0e0e"
+            android:textSize="5sp"
+            tools:text="用户名称:" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="#55888888" />
+
+
+</LinearLayout>
