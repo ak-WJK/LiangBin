@@ -59,4 +59,11 @@
     </style>
 
 
+    <style name="customcheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+
+        <item name="android:drawable">@drawable/cart_checkbox_seleck</item>
+
+    </style>
+
+
 </resources>

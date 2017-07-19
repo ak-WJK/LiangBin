@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
@@ -18,6 +19,7 @@ import android.widget.ViewSwitcher;
 
 import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.magazine.activity.MagazineTypeAndAutherActivity;
+import com.wjk2288.liangbin.activity.magazine.activity.MagazineWebViewActivity;
 import com.wjk2288.liangbin.activity.magazine.adapter.MagazineAdapter;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
@@ -65,7 +67,6 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
             setTextSwitcher(monthInfo);
 
             initListener();
-
         }
     };
     private String monthInfo;
@@ -80,7 +81,9 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
         recyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         recyclerview.setAdapter(adapter);
 
+        //设置textSwitcher的实现类
         textSwitcher.setFactory(this);
+
         textSwitcher.setInAnimation(AnimationUtils.loadAnimation(context, R.anim.textswitcher_slide_in_bottom));
         textSwitcher.setOutAnimation(AnimationUtils.loadAnimation(context, R.anim.textswitcher_slide_in_top));
 
@@ -159,6 +162,19 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
         });
 
 
+        adapter.setOnChangedClickListener(new MagazineAdapter.onChangedClickListener() {
+            @Override
+            public void onTimeClick(int position) {
+                Intent intent = new Intent(context, MagazineWebViewActivity.class);
+                Bundle bundle = new Bundle();
+                String access_url = mgzBeanList.get(position).getAccess_url();
+
+                intent.putExtra("url", access_url);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void setTextSwitcher(String monthInfo) {
@@ -198,6 +214,10 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
 
                     String cat_name = jsonObjectItem.optString("cat_name");
                     magazineBean.setCat_name(cat_name);
+
+
+                    String access_url = jsonObjectItem.optString("access_url");
+                    magazineBean.setAccess_url(access_url);
 
                     magazineBean.setMonthInfo(keys.get(i) + "");
 
@@ -249,7 +269,8 @@ public class MagazineFragment extends BaseFragment implements ViewSwitcher.ViewF
     public View makeView() {
         TextView tv = new TextView(context);
         tv.setTextSize(11);
-        tv.setTextColor(Color.CYAN);
+        tv.setTextColor(Color.parseColor("#3F51B5"));
+//        tv.setTextColor(R.color.bla);
         tv.setText(monthInfo);
         return tv;
     }

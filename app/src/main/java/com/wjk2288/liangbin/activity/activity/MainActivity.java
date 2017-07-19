@@ -3,7 +3,6 @@ package com.wjk2288.liangbin.activity.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
@@ -80,9 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListener() {
+
+
         rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
 
                 checkedFragment(checkedId);
             }
@@ -116,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void switchFragment(BaseFragment currentFragment) {
+
+
         fm = getFragmentManager().beginTransaction();
+
 //        FragmentTransaction fm = getSupportFragmentManager().beginTransaction();
         if (currentFragment != null && !currentFragment.isAdded()) {
             if (fragment != currentFragment) {
@@ -132,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
             fm.show(currentFragment);
         }
         fragment = currentFragment;
+
         fm.commit();
 
     }
@@ -186,10 +192,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    protected void onResume() {
+        super.onResume();
+
     }
+
 }

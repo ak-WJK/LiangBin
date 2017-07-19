@@ -2,6 +2,7 @@ package com.wjk2288.liangbin.activity.shop.fragment.showfragment;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -97,6 +98,7 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
         //设置点击事件
         initListener();
 
+
     }
 
     private void requestData() {
@@ -131,14 +133,15 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void initListener() {
+        final MainActivity mainActivity = (MainActivity) context;
+        final FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
+
 
         //设置返回的监听事件
         ibShopBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                MainActivity mainActivity = (MainActivity) context;
-                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
 
                 TypeShowFragment typeShowFragment = TypeShowFragment.this;
 
@@ -152,9 +155,9 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
                     //会出现隐藏了但是显示不了的问题
 //                    fm.show(shopFragment);
                     fm.hide(typeShowFragment);
+
                     fm.commit();
                 }
-
 
             }
         });
@@ -177,8 +180,15 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
             public void onPagerListener(int position) {
 
                 TypeShowBean.DataBean.ItemsBean itemsBean = itemsBeanList.get(position);
+
+
                 String goods_id = itemsBean.getGoods_id();
+
+
                 Intent intent = new Intent(context, GoodsDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("itemsBean", itemsBean);
+                intent.putExtras(bundle);
                 intent.putExtra("goodsId", goods_id);
                 startActivity(intent);
             }

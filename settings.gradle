@@ -1,4 +1,4 @@
-include ':app', ':recyclerviewheader', ':testswitch', 'FlycoTabLayout', ':FlycoTabLayout_Lib', 'DesignLibrarySample', ':jcvideoplayer-lib', 'JieCaoVideoPlayer'
+include ':app', ':recyclerviewheader', ':testswitch', 'FlycoTabLayout', ':FlycoTabLayout_Lib', 'DesignLibrarySample', ':jcvideoplayer-lib', 'JieCaoVideoPlayer', ':flowlayout-lib', ':flowlayout'
 
 include ':myFragmentAnimation'
 

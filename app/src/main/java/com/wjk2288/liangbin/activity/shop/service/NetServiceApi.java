@@ -9,8 +9,7 @@ import com.wjk2288.liangbin.activity.magazine.bean.MagazineBean;
 import com.wjk2288.liangbin.activity.magazine.bean.MagazineTypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.TypeBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsBean;
-import com.wjk2288.liangbin.activity.shop.bean.details.BrandDetailsPagerBean;
-import com.wjk2288.liangbin.activity.shop.bean.details.TypeDetailsBean;
+import com.wjk2288.liangbin.activity.shop.bean.details.GoodsDetailsBean;
 import com.wjk2288.liangbin.activity.shop.bean.details.TypeShowBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.BrandBean;
 import com.wjk2288.liangbin.activity.shop.bean.typepagerbean.HomeBean;
@@ -51,12 +50,12 @@ public interface NetServiceApi {
                                                  @Query("sig") String sig,
                                                  @Query("v") String v);
 
-    //品牌详情
-    @GET("goodsDetail")
-    Observable<BrandDetailsPagerBean> getBrandDetailsPager(@Query("app_key") String appkey,
-                                                           @Query("goods_id") String brandId,
-                                                           @Query("sig") String sig,
-                                                           @Query("v") String v);
+//    //品牌详情
+//    @GET("goodsDetail")
+//    Observable<BrandDetailsPagerBean> getBrandDetailsPager(@Query("app_key") String appkey,
+//                                                           @Query("goods_id") String brandId,
+//                                                           @Query("sig") String sig,
+//                                                           @Query("v") String v);
 
 
     //专题
@@ -105,10 +104,10 @@ public interface NetServiceApi {
 
     //商品详情
     @GET("goodsDetail")
-    Observable<TypeDetailsBean> getGoodsDetails(@Query("app_key") String appkey,
-                                                @Query("goods_id") String goodId,
-                                                @Query("sig") String sig,
-                                                @Query("v") String v
+    Observable<GoodsDetailsBean> getGoodsDetails(@Query("app_key") String appkey,
+                                                 @Query("goods_id") String goodId,
+                                                 @Query("sig") String sig,
+                                                 @Query("v") String v
     );
 
 

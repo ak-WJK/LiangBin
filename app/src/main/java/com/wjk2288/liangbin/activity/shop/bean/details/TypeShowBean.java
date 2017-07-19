@@ -1,12 +1,13 @@
 package com.wjk2288.liangbin.activity.shop.bean.details;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/8.
  */
 
-public class TypeShowBean {
+public class TypeShowBean implements Serializable {
 
 
     /**
@@ -43,7 +44,7 @@ public class TypeShowBean {
         this.data = data;
     }
 
-    public static class MetaBean {
+    public static class MetaBean implements Serializable {
         /**
          * status : 0
          * server_time : 2017-07-08 16:20:47
@@ -109,7 +110,7 @@ public class TypeShowBean {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * has_more : true
          * num_items : 1341
@@ -144,7 +145,7 @@ public class TypeShowBean {
             this.items = items;
         }
 
-        public static class ItemsBean {
+        public static class ItemsBean implements Serializable {
             /**
              * goods_id : 258055
              * goods_image : http://imgs-qn.iliangcang.com/ware/goods/big/2/258/258055.jpg?t=1497525912
@@ -299,7 +300,7 @@ public class TypeShowBean {
                 this.brand_info = brand_info;
             }
 
-            public static class BrandInfoBean {
+            public static class BrandInfoBean implements Serializable {
                 /**
                  * brand_id : 819
                  * brand_name : JEX捷古斯

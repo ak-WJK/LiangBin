@@ -27,7 +27,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
     private Context context;
 
     private ArrayList<MagazineBean> datas = new ArrayList<>();
-    private onTimeChangedClickListener listener;
+    private onChangedClickListener listener;
     boolean delayedTime = true;
     private String monthInfo;
 
@@ -87,7 +87,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
         public void setData(int position, ArrayList<MagazineBean> datas) {
 
             String cover_img_new = datas.get(position).getCover_img_new();
-            ivMagazineIcon.setImageAlpha(100);
+
             Glide.with(context).load(cover_img_new).into(ivMagazineIcon);
 
             String topic_name = datas.get(position).getTopic_name();
@@ -127,8 +127,6 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
             datas.addAll(mgzBeanList);
             notifyDataSetChanged();
         }
-
-
     }
 
 
@@ -151,12 +149,12 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.Magazi
     }
 
 
-    public interface onTimeChangedClickListener {
+    public interface onChangedClickListener {
         void onTimeClick(int position);
     }
 
 
-    public void setOnTimeChangedClickListener(onTimeChangedClickListener listener) {
+    public void setOnChangedClickListener(onChangedClickListener listener) {
 
         this.listener = listener;
     }
