@@ -13,6 +13,18 @@ public class CartBean {
     private String goodsId;
     private int goodsNumber;
 
+    public void setChecked(boolean checked) {
+        this.isChecked = checked;
+    }
+
+
+    private boolean isChecked = true;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+
     public String getGoodsId() {
         return goodsId;
     }

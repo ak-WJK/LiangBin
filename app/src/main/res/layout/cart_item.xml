@@ -1,64 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_margin="10dp">
 
-    <CheckBox
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:button="@drawable/cart_checkbox_seleck" />
+        android:layout_margin="10dp">
 
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="70dp"
-        android:layout_height="70dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_goods_content"
+        <CheckBox
+            android:id="@+id/cb_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="品牌名称"
-            android:textSize="13sp" />
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:button="@drawable/cart_checkbox_seleck" />
 
-        <TextView
-            android:id="@+id/tv_goods_attr"
+        <ImageView
+
+            android:id="@+id/iv_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_toRightOf="@+id/cb_checkbox" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="品牌名称"
-            android:textSize="10sp" />
+            android:layout_toRightOf="@+id/iv_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_goods_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="品牌名称"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_goods_attr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:lines="1"
+                android:text="品牌属性"
+                android:textSize="10sp" />
+
+
+            <TextView
+                android:id="@+id/tv_goods_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:text="1000"
+                android:textColor="#2e94b9"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_goods_price"
+            android:id="@+id/tv_goods_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="3dp"
-            android:text="1000"
-            android:textColor="#2e94b9"
-            android:textSize="10sp" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:textColor="#7e7e7e"
+            android:textSize="10sp"
+            tools:text="x3" />
+
+    </RelativeLayout>
 
 
-    </LinearLayout>
-    
-    <TextView
-        android:id="@+id/tv_goods_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="3dp"
-        android:text="x3"
-        android:textColor="#7e7e7e"
-        android:textSize="10sp" />
-
-
-</LinearLayout>
+</RelativeLayout>

@@ -3,6 +3,7 @@ package com.wjk2288.liangbin.activity.shop.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -41,12 +42,11 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.wjk2288.liangbin.R.id.goods_name;
 import static com.wjk2288.liangbin.R.id.id_flowlayout;
 import static com.wjk2288.liangbin.activity.shop.base.BasePager.context;
 
 public class GoodsDetailsActivity extends AppCompatActivity implements View.OnClickListener {
-//
+
 
     @Bind(R.id.ib_back)
     ImageButton ibBack;
@@ -81,11 +81,19 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
     private String goodsId;
     private PopupWindow popupWindow;
     private GoodsDetailsBean.DataBean goodsDetailsBeanData;
-    private String attr_name;
+
     private GoodsDetailsBean.DataBean.ItemsBean.SkuInfoBean.AttrListBean bean;
     private Button btnAddCart;
     private CartBean cartBean;
     private ArrayList<String> lists;
+    private String img_path;
+    private String goods_image;
+    private String goods_id;
+    private String goods_name;
+    private String price;
+    private int value = 1;
+    private String attr_name;
+    private String price1;
 
 
     @Override
@@ -94,9 +102,6 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_goods_details);
         ButterKnife.bind(this);
 
-
-        //购物车存储类
-        cartBean = new CartBean();
 
         Intent intent = getIntent();
         goodsId = intent.getStringExtra("goodsId");
@@ -194,7 +199,7 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
 
         btnBack = (ImageButton) popupView.findViewById(R.id.btn_back);
         goodsIcon = (ImageView) popupView.findViewById(R.id.goods_icon);
-        goodsName = (TextView) popupView.findViewById(goods_name);
+        goodsName = (TextView) popupView.findViewById(R.id.goods_name);
         goodsContent = (TextView) popupView.findViewById(R.id.goods_content);
         goodsPrice = (TextView) popupView.findViewById(R.id.goods_price);
         goodsAttrContent = (TextView) popupView.findViewById(R.id.goods_attr_content);
@@ -208,30 +213,24 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
         btnAddCart.setOnClickListener(this);
         btnGouMian.setOnClickListener(this);
 
-        String goods_id = goodsDetailsBeanData.getItems().getGoods_id();
-        cartBean.setGoodsId(goods_id);
+        goods_id = goodsDetailsBeanData.getItems().getGoods_id();
 
-        LogUtils.e("TAG", "goods_id==" + goods_id);
 
-        String goods_image = goodsDetailsBeanData.getItems().getGoods_image();
+        goods_image = goodsDetailsBeanData.getItems().getGoods_image();
 
         Glide.with(this).load(goods_image).into(goodsIcon);
 
         String brand_name = goodsDetailsBeanData.getItems().getBrand_info().getBrand_name();
         goodsName.setText(brand_name);
 
-        //设置品牌名称到cartBean
-        cartBean.setGoodsName(brand_name);
+//        设置品牌名称到cartBean
+//        cartBean.setGoodsName(brand_name);
 
-        LogUtils.e("TAG", "brand_name==" + brand_name);
+//        LogUtils.e("TAG", "brand_name==" + brand_name);
 
-        String goods_name = goodsDetailsBeanData.getItems().getGoods_name();
+        goods_name = goodsDetailsBeanData.getItems().getGoods_name();
         goodsContent.setText(goods_name);
 
-        //设置品牌描述
-        cartBean.setGoodsContent(goods_name);
-
-        LogUtils.e("TAG", "goods_name==" + goods_name);
 
         String type_name = goodsDetailsBeanData.getItems().getSku_info().get(0).getType_name();
         goodsAttrContent.setText(type_name);
@@ -269,37 +268,38 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
         //获取选中的集合
 //        mFlowLayout.getSelectedList();
 
-        String price1 = goodsDetailsBeanData.getItems().getSku_inv().get(0).getPrice();
+        price1 = goodsDetailsBeanData.getItems().getSku_inv().get(0).getPrice();
         goodsPrice.setText("¥" + price1);
 
         mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
 
 
-                String price = goodsDetailsBeanData.getItems().getSku_inv().get(position).getPrice();
+                price = goodsDetailsBeanData.getItems().getSku_inv().get(position).getPrice();
 
                 goodsPrice.setText("¥" + price);
 
-                //设置商品价格到bean类
-                cartBean.setGoodsPrice("¥" + price);
-                LogUtils.e("TAG", "price==" + price);
 
                 //设置所选中的商品标签
                 mAdapter.setSelectedList(position);
 
-                //设置商品属性名称到购物车bean类中
-                cartBean.setAttrName(lists.get(position));
+
+                String typeName = goodsDetailsBeanData.getItems().getSku_info().get(0).getType_name();
 
 
-                //设置选中的产品的展示图片
-                String img_path = goodsDetailsBeanData.getItems().getSku_info().get(0).getAttrList().get(position).getImg_path();
+                attr_name = goodsDetailsBeanData.getItems().getSku_info().get(0).getAttrList().get(position).getAttr_name();
+
+
+                img_path = goodsDetailsBeanData.getItems().getSku_info().get(0).getAttrList().get(position).getImg_path();
                 Glide.with(GoodsDetailsActivity.this).load(img_path).into(goodsIcon);
 
-                //设置所选中商品的展示图片
-                cartBean.setImageUrl(img_path);
+                if (TextUtils.isEmpty(img_path)) {
+                    Glide.with(GoodsDetailsActivity.this).load(goods_image).into(goodsIcon);
+//                    cartBean.setImageUrl(goods_image);
+                }
 
-                LogUtils.e("TAG", "imagepath==" + img_path);
 
                 return true;
             }
@@ -314,18 +314,13 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
 //            }
 //        });
 
+//        cartBean.setGoodsNumber(1);
 
         av.setOnNumberChangerListener(new AddSubView.OnNumberChangerListener() {
 
             @Override
             public void onNumberChanger(int value) {
-                if (value == 0) {
-                    cartBean.setGoodsNumber(1);
-
-                }
-
-                cartBean.setGoodsNumber(value);
-                LogUtils.e("TAG", "value= " + value);
+                GoodsDetailsActivity.this.value = value;
 
             }
         });
@@ -345,11 +340,49 @@ public class GoodsDetailsActivity extends AppCompatActivity implements View.OnCl
                 popupWindow.dismiss();
                 break;
             case R.id.btn_add_cart:
-                LogUtils.e("TAG", "添加购物车");
+
+                //购物车存储类
+                cartBean = new CartBean();
+                cartBean.setGoodsId(goods_id);
+
+                //设置品牌描述
+                cartBean.setGoodsContent(goods_name);
+
+                //设置商品价格到bean类
+                if (price == null) {
+                    cartBean.setGoodsPrice(price1);
+                } else {
+                    cartBean.setGoodsPrice(price);
+
+                }
+
+
+                //设置选中的产品的展示图片
+                if (TextUtils.isEmpty(img_path)) {
+                    Glide.with(GoodsDetailsActivity.this).load(goods_image).into(goodsIcon);
+                    cartBean.setImageUrl(goods_image);
+                } else {
+
+                    //设置所选中商品的展示图片
+                    cartBean.setImageUrl(img_path);
+                }
+                if (value == 1) {
+                    cartBean.setGoodsNumber(1);
+                } else {
+                    cartBean.setGoodsNumber(value);
+
+
+                }
+
+                //设置商品属性名称到购物车bean类中
+                cartBean.setAttrName(attr_name);
+                LogUtils.e("TAG", "attrName==" + attr_name);
 
                 //数据添加到数据库
                 UserDAO.getInstance().addGoods(cartBean);
-                LogUtils.e("TAG", "添加成功");
+
+                Toast.makeText(GoodsDetailsActivity.this, "添加成功后", Toast.LENGTH_SHORT).show();
+
 
                 break;
             case R.id.btn_goumain:

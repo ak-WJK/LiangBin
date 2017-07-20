@@ -147,7 +147,7 @@ public class DaRenFragment extends BaseFragment implements View.OnClickListener 
 //        popupWindow.setOutsideTouchable(false);
 
 
-//        popupWindow.showAtLocation(ibShopCart, Gravity.BOTTOM, 0, 0);
+//       popupWindow.showAtLocation(ibShopCart, Gravity.BOTTOM, 100, -500);
         popupWindow.showAsDropDown(ibShopCart, 0, 25);
 
         //设置popup的dismiss的监听实现按钮的变化

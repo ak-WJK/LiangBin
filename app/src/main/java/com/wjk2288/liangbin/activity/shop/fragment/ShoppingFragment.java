@@ -1,14 +1,17 @@
 package com.wjk2288.liangbin.activity.shop.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.shop.activity.CartActivity;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
 import com.wjk2288.liangbin.activity.shop.base.BasePager;
 import com.wjk2288.liangbin.activity.shop.pager.BrandPager;
@@ -21,11 +24,11 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static android.view.View.Z;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/7/6.
+ *
  */
 
 public class ShoppingFragment extends BaseFragment {
@@ -79,6 +82,29 @@ public class ShoppingFragment extends BaseFragment {
         pagers.add(new GiftPager(context));
 
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @OnClick({R.id.ib_shop_search, R.id.ib_shop_cart})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ib_shop_search:
+                Intent intent = new Intent(context, ScanActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ib_shop_cart:
+                intent = new Intent(context, CartActivity.class);
+                startActivity(intent);
+
+                break;
+        }
     }
 
     class MyPagerAdapter extends PagerAdapter {

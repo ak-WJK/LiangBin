@@ -9,6 +9,8 @@ import com.wjk2288.liangbin.activity.db.UserDB;
 import com.wjk2288.liangbin.activity.shop.bean.CartBean;
 import com.wjk2288.liangbin.activity.table.UserTable;
 
+import java.util.ArrayList;
+
 import static com.wjk2288.liangbin.activity.shop.base.BasePager.context;
 
 /**
@@ -35,6 +37,7 @@ public class UserDAO {
         if (cartBean == null) {
             throw new NullPointerException("数据不能为空");
         }
+
         SQLiteDatabase database = db.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -44,6 +47,7 @@ public class UserDAO {
         values.put(UserTable.GOODS_CONTENT, cartBean.getGoodsContent());
         values.put(UserTable.GOODS_IMAGE_URL, cartBean.getImageUrl());
         values.put(UserTable.GOODS_NUMBER, cartBean.getGoodsNumber());
+        values.put(UserTable.GOODS_ATTR_NAME, cartBean.getAttrName());
         database.replace(UserTable.TABLE_NAME, null, values);
     }
 
@@ -58,24 +62,29 @@ public class UserDAO {
     }
 
     //查找商品
-    public CartBean getCartGoods() {
-        CartBean cartBean = new CartBean();
+    public ArrayList<CartBean> getCartGoods() {
+
 
         SQLiteDatabase database = db.getWritableDatabase();
         String sql = "select * from " + UserTable.TABLE_NAME;
         Cursor cursor = database.rawQuery(sql, null);
 
-        if (cursor.moveToNext()) {
+        ArrayList<CartBean> cartBeanArrayList = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+
+            CartBean cartBean = new CartBean();
             cartBean.setGoodsId(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_ID)));
             cartBean.setGoodsName(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_NAME)));
             cartBean.setGoodsContent(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_CONTENT)));
             cartBean.setGoodsPrice(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_PRICE)));
             cartBean.setGoodsNumber(cursor.getInt(cursor.getColumnIndex(UserTable.GOODS_NUMBER)));
             cartBean.setImageUrl(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_IMAGE_URL)));
-
+            cartBean.setAttrName(cursor.getString(cursor.getColumnIndex(UserTable.GOODS_ATTR_NAME)));
+            cartBeanArrayList.add(cartBean);
         }
         cursor.close();
-        return cartBean;
+        return cartBeanArrayList;
 
     }
 

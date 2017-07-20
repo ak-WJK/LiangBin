@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.dao.UserDAO;
 import com.wjk2288.liangbin.activity.shop.base.BaseFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.DaRenFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        UserDAO userDAO = new UserDAO(this);
+
+
         //设置按钮默认状态
         rgMain.check(R.id.rb_mian_shop);
         //初始化fragment
@@ -184,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }, 2000);
 
-            return true;
+            return super.onKeyDown(keyCode, event);
         }
 
 

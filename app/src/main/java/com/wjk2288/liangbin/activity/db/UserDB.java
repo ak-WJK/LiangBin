@@ -8,6 +8,7 @@ import com.wjk2288.liangbin.activity.table.UserTable;
 
 /**
  * Created by Administrator on 2017/7/19.
+ *
  */
 
 public class UserDB extends SQLiteOpenHelper {
