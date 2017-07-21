@@ -18,7 +18,7 @@
         android:gravity="center"
         android:text="1"
         android:textColor="#55000000"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <ImageView
         android:id="@+id/iv_add"

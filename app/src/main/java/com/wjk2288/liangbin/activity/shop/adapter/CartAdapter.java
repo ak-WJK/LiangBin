@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,7 +14,6 @@ import com.wjk2288.liangbin.R;
 import com.wjk2288.liangbin.activity.dao.UserDAO;
 import com.wjk2288.liangbin.activity.shop.bean.CartBean;
 import com.wjk2288.liangbin.activity.shop.view.AddSubView;
-import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -31,7 +29,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
 
     private ArrayList<CartBean> datas = new ArrayList<>();
     private Context context;
-    private onClickItemListener listener;
+    private onLongClickItemListener listener;
     private TextView tvCartTotalprice;
     private CheckBox cbCartSelect;
     private TextView ibCartEdit;
@@ -75,7 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
                 cartBean.setChecked(!cartBean.isChecked());
 
                 boolean checked = cartBean.isChecked();
-                LogUtils.e("TAG", "checked====" + checked);
+
                 notifyDataSetChanged();
 
                 //显示总价格
@@ -108,17 +106,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
     public void deleteItem() {
         if (datas != null && datas.size() > 0) {
             for (int i = 0; i < datas.size(); i++) {
-
                 CartBean cartBean = datas.get(i);
                 boolean checked = cartBean.isChecked();
-                LogUtils.e("TAG", "CHECKED==" + checked);
-
 
                 if (cartBean.isChecked()) {
-
                     datas.remove(cartBean);
                     String goodsId = cartBean.getGoodsId();
-                    LogUtils.e("TAG", "goodsId==" + goodsId);
                     UserDAO.getInstance().deleteGoods(goodsId);
                     notifyItemChanged(i);
                     i--;
@@ -157,6 +150,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
         public void setData(final int position, final ArrayList<CartBean> datas) {
 
             setItemData(datas, position, CartHodler.this);
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (listener != null) {
+                        listener.onLongItemClick(itemView, position);
+                    }
+                    return true;
+                }
+            });
 
 
         }
@@ -203,10 +205,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
             for (int i = 0; i < datas.size(); i++) {
                 CartBean cartBean = datas.get(i);
                 String goodsPrice = cartBean.getGoodsPrice();
-                LogUtils.e("TAG", "goodsPrice==" + goodsPrice);
+
 
                 int goodsNumber = cartBean.getGoodsNumber();
-                LogUtils.e("TAG", "goodsNumber== " + goodsNumber);
+
 
                 if (cartBean.isChecked()) {
                     result = result + Double.parseDouble(goodsPrice) * goodsNumber;
@@ -261,12 +263,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
     }
 
 
-    public interface onClickItemListener {
-        void onItemClick(int position, RelativeLayout rl1, RelativeLayout rl2);
+    public interface onLongClickItemListener {
+        void onLongItemClick(View itemView, int position);
 
     }
 
-    public void setOnClickItemListener(onClickItemListener listener) {
+    public void setOnClickItemListener(onLongClickItemListener listener) {
 
         this.listener = listener;
     }
