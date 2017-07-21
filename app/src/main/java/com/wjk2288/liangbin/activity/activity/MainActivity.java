@@ -21,7 +21,6 @@ import com.wjk2288.liangbin.activity.shop.fragment.SelfFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SharedFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.ShoppingFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;
-import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -211,32 +210,49 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setCurrentFragment(TypeShowFragment showFragment) {
+//    public void setCurrentFragment(TypeShowFragment showFragment) {
+//        this.isShowShopList = true;
+//
+//        fragments.add(showFragment);
+//        fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//        ft.add(R.id.main_fl, showFragment);
+//        ft.hide(fragment);
+//        ft.commit();
+//        this.fragment = showFragment;
+//
+//    }
+
+    public void setCurrentFragment(TypeShowFragment typeShowFragment) {
         this.isShowShopList = true;
 
-        fragments.add(showFragment);
-        fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragments.add(typeShowFragment);
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.main_fl, showFragment);
+        //添加动画回退时一片空白
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.add(R.id.main_fl, typeShowFragment);
         ft.hide(fragment);
+
         ft.commit();
-        this.fragment = showFragment;
+        this.fragment = typeShowFragment;
 
     }
 
+
     public void hideShopListFragment() {
         this.isShowShopList = false;
-//        if (fragments.size() >= 6) {
-        LogUtils.d("执行替换");
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.show(fragments.get(0));
         ft.hide(fragments.get(5));
         ft.remove(fragments.get(5));
+
         ft.commit();
-//        position = 0;
+
         fragment = fragments.get(0);
         fragments.remove(5);
-//        }
+
 
     }
 }
