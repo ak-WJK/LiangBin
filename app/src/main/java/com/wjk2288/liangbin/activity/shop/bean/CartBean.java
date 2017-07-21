@@ -13,6 +13,9 @@ public class CartBean {
     private String goodsId;
     private int goodsNumber;
 
+
+
+
     public void setChecked(boolean checked) {
         this.isChecked = checked;
     }

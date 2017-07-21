@@ -51,6 +51,10 @@ public class AddSubView extends LinearLayout {
         this.maxValue = maxValue;
     }
 
+    /**
+     * @param context
+     * @param attrs
+     */
     public AddSubView(Context context, AttributeSet attrs) {
         super(context, attrs);
         //把布局文件实例化成View,并且添加到AddSubView.this类中，成为他的子视图
@@ -92,27 +96,34 @@ public class AddSubView extends LinearLayout {
 
 
         if (attrs != null) {
-            //取出属性
-            TintTypedArray tintTypedArray = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.AddSubView);
-            int value = tintTypedArray.getInt(R.styleable.AddSubView_value, 0);
-            if (value > 0) {
-                setValue(value);
-            }
-            int minValue = tintTypedArray.getInt(R.styleable.AddSubView_minValue, 0);
-            if (value > 0) {
-                setMinValue(minValue);
-            }
-            int maxValue = tintTypedArray.getInt(R.styleable.AddSubView_maxValue, 0);
-            if (value > 0) {
-                setMaxValue(maxValue);
-            }
-            Drawable addDrawable = tintTypedArray.getDrawable(R.styleable.AddSubView_numberAddBackground);
-            if (addDrawable != null) {
-                iv_add.setImageDrawable(addDrawable);
-            }
-            Drawable subDrawable = tintTypedArray.getDrawable(R.styleable.AddSubView_numberSubBackground);
-            if (subDrawable != null) {
-                iv_sub.setImageDrawable(subDrawable);
+            TintTypedArray tintTypedArray = null;
+
+            try {
+                //取出属性
+                tintTypedArray = TintTypedArray.obtainStyledAttributes(context, attrs, R.styleable.AddSubView);
+                int value = tintTypedArray.getInt(R.styleable.AddSubView_value, 0);
+                if (value > 0) {
+                    setValue(value);
+                }
+                int minValue = tintTypedArray.getInt(R.styleable.AddSubView_minValue, 0);
+                if (value > 0) {
+                    setMinValue(minValue);
+                }
+                int maxValue = tintTypedArray.getInt(R.styleable.AddSubView_maxValue, 0);
+                if (value > 0) {
+                    setMaxValue(maxValue);
+                }
+                Drawable addDrawable = tintTypedArray.getDrawable(R.styleable.AddSubView_numberAddBackground);
+                if (addDrawable != null) {
+                    iv_add.setImageDrawable(addDrawable);
+                }
+                Drawable subDrawable = tintTypedArray.getDrawable(R.styleable.AddSubView_numberSubBackground);
+                if (subDrawable != null) {
+                    iv_sub.setImageDrawable(subDrawable);
+                }
+            } finally {
+                tintTypedArray.recycle();
+
             }
         }
 

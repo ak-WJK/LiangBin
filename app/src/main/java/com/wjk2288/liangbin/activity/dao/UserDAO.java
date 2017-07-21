@@ -57,7 +57,7 @@ public class UserDAO {
 
         SQLiteDatabase database = db.getWritableDatabase();
 
-        database.delete(UserTable.TABLE_NAME, goodsId, new String[]{goodsId});
+        database.delete(UserTable.TABLE_NAME, UserTable.GOODS_ID + "=?", new String[]{goodsId});
 
     }
 

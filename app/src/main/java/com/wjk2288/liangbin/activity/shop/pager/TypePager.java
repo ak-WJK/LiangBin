@@ -1,6 +1,5 @@
 package com.wjk2288.liangbin.activity.shop.pager;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -96,7 +95,7 @@ public class TypePager extends BasePager {
 
                 MainActivity mainActivity = (MainActivity) context;
 
-                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
+//                FragmentTransaction fm = mainActivity.getFragmentManager().beginTransaction();
 
                 if (showFragment != null) {
 
@@ -106,8 +105,8 @@ public class TypePager extends BasePager {
                     bundle.putInt("position", position);
                     showFragment.setArguments(bundle);
 
-                    //原动画没毛病
-                    fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//                    //原动画没毛病
+//                    fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 
 
                     /*
@@ -119,9 +118,10 @@ public class TypePager extends BasePager {
                     * */
 //                    fm.setCustomAnimations(R.anim.in_from_right, 0);
 
-                    fm.replace(R.id.main_fl, showFragment);
-                    fm.addToBackStack(null);
-                    fm.commit();
+//                    fm.add(R.id.main_fl, showFragment);
+//                    fm.commit();
+
+                    mainActivity.setCurrentFragment(showFragment);
                 }
 
 

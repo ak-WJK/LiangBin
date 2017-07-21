@@ -20,6 +20,8 @@ import com.wjk2288.liangbin.activity.shop.fragment.MagazineFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SelfFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.SharedFragment;
 import com.wjk2288.liangbin.activity.shop.fragment.ShoppingFragment;
+import com.wjk2288.liangbin.activity.shop.fragment.showfragment.TypeShowFragment;
+import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.ArrayList;
 
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton rbMianSelf;
     @Bind(R.id.rg_main)
     RadioGroup rgMain;
+
+    private boolean isShowShopList = false; //是否显示商品列表
 
 
     private int position;
@@ -116,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
                 position = 4;
                 break;
 
+        }
+        if (isShowShopList && position == 0) {
+
+            position = 5;
         }
         currentFragment = fragments.get(position);
         switchFragment(currentFragment);
@@ -203,4 +211,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void setCurrentFragment(TypeShowFragment showFragment) {
+        this.isShowShopList = true;
+
+        fragments.add(showFragment);
+        fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.add(R.id.main_fl, showFragment);
+        ft.hide(fragment);
+        ft.commit();
+        this.fragment = showFragment;
+
+    }
+
+    public void hideShopListFragment() {
+        this.isShowShopList = false;
+//        if (fragments.size() >= 6) {
+        LogUtils.d("执行替换");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.show(fragments.get(0));
+        ft.hide(fragments.get(5));
+        ft.remove(fragments.get(5));
+        ft.commit();
+//        position = 0;
+        fragment = fragments.get(0);
+        fragments.remove(5);
+//        }
+
+    }
 }

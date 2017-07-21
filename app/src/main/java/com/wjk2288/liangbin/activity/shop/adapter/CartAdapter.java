@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wjk2288.liangbin.R;
+import com.wjk2288.liangbin.activity.dao.UserDAO;
 import com.wjk2288.liangbin.activity.shop.bean.CartBean;
+import com.wjk2288.liangbin.activity.shop.view.AddSubView;
 import com.wjk2288.liangbin.activity.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -31,11 +34,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
     private onClickItemListener listener;
     private TextView tvCartTotalprice;
     private CheckBox cbCartSelect;
+    private TextView ibCartEdit;
+    private boolean isShowItem = true;
 
-    public CartAdapter(Context context, TextView tvCartTotalprice, CheckBox cbCartSelect) {
+
+    public CartAdapter(Context context, TextView tvCartTotalprice, CheckBox cbCartSelect, TextView ibCartEdit) {
         this.context = context;
         this.tvCartTotalprice = tvCartTotalprice;
         this.cbCartSelect = cbCartSelect;
+        this.ibCartEdit = ibCartEdit;
 
         //显示总价格
         showTotalPrice();
@@ -53,6 +60,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
 
     @Override
     public void onBindViewHolder(final CartHodler holder, final int position) {
+
+
         holder.setData(position, datas);
 
         //设置默认checkBox为选中状态
@@ -64,6 +73,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
             @Override
             public void onClick(View v) {
                 cartBean.setChecked(!cartBean.isChecked());
+
+                boolean checked = cartBean.isChecked();
+                LogUtils.e("TAG", "checked====" + checked);
                 notifyDataSetChanged();
 
                 //显示总价格
@@ -93,6 +105,31 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
 
     }
 
+    public void deleteItem() {
+        if (datas != null && datas.size() > 0) {
+            for (int i = 0; i < datas.size(); i++) {
+
+                CartBean cartBean = datas.get(i);
+                boolean checked = cartBean.isChecked();
+                LogUtils.e("TAG", "CHECKED==" + checked);
+
+
+                if (cartBean.isChecked()) {
+
+                    datas.remove(cartBean);
+                    String goodsId = cartBean.getGoodsId();
+                    LogUtils.e("TAG", "goodsId==" + goodsId);
+                    UserDAO.getInstance().deleteGoods(goodsId);
+                    notifyItemChanged(i);
+                    i--;
+                }
+
+            }
+        }
+
+
+    }
+
 
     class CartHodler extends RecyclerView.ViewHolder {
 
@@ -107,7 +144,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
         @Bind(R.id.tv_goods_price)
         TextView tvGoodsPrice;
         @Bind(R.id.tv_goods_number)
-        TextView tvGoodsNumber;
+        AddSubView tvGoodsNumber;
 
         public CartHodler(View itemView) {
             super(itemView);
@@ -116,32 +153,40 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
 
         }
 
-        public void setData(int position, ArrayList<CartBean> datas) {
 
-            String imageUrl = datas.get(position).getImageUrl();
+        public void setData(final int position, final ArrayList<CartBean> datas) {
 
-            Glide.with(context).load(imageUrl).into(ivIcon);
-
-            String goodsName = datas.get(position).getGoodsName();
-            tvGoodsAttr.setText(goodsName);
-
-            String goodsContent = datas.get(position).getGoodsContent();
-            tvGoodsContent.setText(goodsContent);
-
-            String goodsPrice = datas.get(position).getGoodsPrice();
-            tvGoodsPrice.setText("￥" + goodsPrice);
-
-            int goodsNumber = datas.get(position).getGoodsNumber();
-
-            tvGoodsNumber.setText("x" + goodsNumber);
-            String attrName = datas.get(position).getAttrName();
-
-            tvGoodsAttr.setText(attrName);
+            setItemData(datas, position, CartHodler.this);
 
 
         }
+
+
     }
 
+
+    private void setItemData(ArrayList<CartBean> datas, int position, CartHodler hodler) {
+        String imageUrl = datas.get(position).getImageUrl();
+
+        Glide.with(context).load(imageUrl).into(hodler.ivIcon);
+
+        String goodsName = datas.get(position).getGoodsName();
+        hodler.tvGoodsAttr.setText(goodsName);
+
+        String goodsContent = datas.get(position).getGoodsContent();
+        hodler.tvGoodsContent.setText(goodsContent);
+
+        String goodsPrice = datas.get(position).getGoodsPrice();
+        hodler.tvGoodsPrice.setText("￥" + goodsPrice);
+
+        int goodsNumber = datas.get(position).getGoodsNumber();
+
+        hodler.tvGoodsNumber.setValue(goodsNumber);
+
+        String attrName = datas.get(position).getAttrName();
+
+        hodler.tvGoodsAttr.setText(attrName);
+    }
 
     //显示价格
     public void showTotalPrice() {
@@ -207,6 +252,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
                 cartBean.setChecked(isCheck);
                 notifyItemChanged(i);
             }
+
         } else {
             cbCartSelect.setChecked(false);
         }
@@ -216,7 +262,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHodler> {
 
 
     public interface onClickItemListener {
-        void onItemClick(int position);
+        void onItemClick(int position, RelativeLayout rl1, RelativeLayout rl2);
 
     }
 

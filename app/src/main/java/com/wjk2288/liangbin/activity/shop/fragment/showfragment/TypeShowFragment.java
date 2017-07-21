@@ -142,22 +142,10 @@ public class TypeShowFragment extends BaseFragment implements View.OnClickListen
             @Override
             public void onClick(View v) {
 
+//                mainActivity.getFragmentManager().popBackStack();
 
-                TypeShowFragment typeShowFragment = TypeShowFragment.this;
-
-                BaseFragment shopFragment = mainActivity.getShopFragment();
-
-                if (shopFragment != null) {
-
-
-                    fm.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                    fm.replace(R.id.main_fl, shopFragment);
-                    //会出现隐藏了但是显示不了的问题
-//                    fm.show(shopFragment);
-                    fm.hide(typeShowFragment);
-
-                    fm.commit();
-                }
+                mainActivity.hideShopListFragment();
+//
 
             }
         });
