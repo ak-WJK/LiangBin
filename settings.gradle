@@ -1,4 +1,5 @@
-include ':app', ':recyclerviewheader', ':testswitch', 'FlycoTabLayout', ':FlycoTabLayout_Lib', 'DesignLibrarySample', ':jcvideoplayer-lib', 'JieCaoVideoPlayer', ':flowlayout-lib', ':flowlayout'
+include ':app', ':recyclerviewheader', ':testswitch', 'FlycoTabLayout', ':FlycoTabLayout_Lib', 'DesignLibrarySample', ':jcvideoplayer-lib', 'JieCaoVideoPlayer', ':flowlayout-lib', ':flowlayout', ':alipay_demo'
 
 include ':myFragmentAnimation'
 
+include ':qR_CodeScan'
